@@ -81,6 +81,10 @@
 
             <div class="content">
                 <h1>COMMING SOON</h1>
+
+                @can('role-list')
+                TEST
+                @endcan
             </div>
         </div>
     </body>
