@@ -16,12 +16,20 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+
 Route::get('/', function () {
     return view('trang-chu');
 });
+
 Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware' => ['auth']], function () {
+
+
+Route::group(['middleware' => ['role:Admin']], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
+});
+
+
+Route::group(['middleware' => ['role:Admin|Teacher|User']], function () {
     Route::resource('products', 'ProductController');
 });
