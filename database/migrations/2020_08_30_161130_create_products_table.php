@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('detail');
+            $table->decimal('credit',9,3);
             $table->timestamps();
         });
     }

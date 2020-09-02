@@ -19,7 +19,8 @@ class CreateAdminUserSeeder extends Seeder
         $user1 = User::create([
             'name' => 'Super Admin',
             'email' => 'super@gmail.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('123456'),
+            'credit' => 10000,
         ]);
         $role1 = Role::create(['name' => 'super-admin']);
         $permissions = Permission::pluck('id', 'id')->all();
@@ -31,7 +32,8 @@ class CreateAdminUserSeeder extends Seeder
         $user2 = User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('123456'),
+            'credit' => 0,
         ]);
         $role2 = Role::create(['name' => 'admin']);
         $permissions = Permission::pluck('id', 'id')->all();
@@ -43,7 +45,8 @@ class CreateAdminUserSeeder extends Seeder
         $user3 = User::create([
             'name' => 'Teacher',
             'email' => 'teacher@gmail.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('123456'),
+            'credit' => 0,
         ]);
         $role3 = Role::create(['name' => 'teacher']);
         $permissions = Permission::pluck('id', 'id')->all();
@@ -55,7 +58,8 @@ class CreateAdminUserSeeder extends Seeder
         $user4 = User::create([
             'name' => 'User',
             'email' => 'user@gmail.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('123456'),
+            'credit' => 0,
         ]);
         $role4 = Role::create(['name' => 'user']);
         $permissions = Permission::pluck('id', 'id')->all();
@@ -67,7 +71,8 @@ class CreateAdminUserSeeder extends Seeder
         $user4 = User::create([
             'name' => 'User 01',
             'email' => 'user01@gmail.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('123456'),
+            'credit' => 0,
         ]);
         $user4->assignRole([$role4->id]);
     }

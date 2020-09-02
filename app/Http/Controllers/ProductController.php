@@ -50,6 +50,7 @@ class ProductController extends Controller
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
+            'credit' => 'required',
         ]);
         Product::create($request->all());
         return redirect()->route('products.index')
@@ -87,6 +88,7 @@ class ProductController extends Controller
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
+            'credit' => 'required',
         ]);
         $product->update($request->all());
         return redirect()->route('products.index')
