@@ -9,9 +9,14 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    function __construct()
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +24,29 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        // Check author
+        $id = Auth::id();
+        $user = \App\User::find($id);
+        $roles = $user->getRoleNames();
+        $role = $roles[0];
+        if ($role === 'admin') {
+            $data = User::orderBy('id', 'DESC')->where('id', '<>', 1)->paginate(5);
+            $user_lists = array();
+            $index = 0;
+            foreach ($data as $key => $user) {
+                if (($user->getRoleNames())[0] !== 'admin') {
+                    $user_lists[$index] = $user->id;
+                    $index++;
+                }
+            }
+            $data = User::orderBy('id', 'DESC')
+                ->where('id', '<>', 1)
+                ->whereIn('id', $user_lists)
+                ->paginate(5);
+
+            return view('users.index', compact('data'))
+                ->with('i', ($request->input('page', 1) - 1) * 5);
+        }
         $data = User::orderBy('id', 'DESC')->paginate(5);
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -97,7 +125,7 @@ class UserController extends Controller
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
-            $input = Arr::except($input,array('password'));
+            $input = Arr::except($input, array('password'));
         }
         $user = User::find($id);
         $user->update($input);
