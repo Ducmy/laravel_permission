@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Courses;
+use App\Course;
 
 class MyAccountController extends Controller
 {
@@ -36,19 +36,16 @@ class MyAccountController extends Controller
             'course_id' => 'required',
         ]);
 
-        return redirect()->route('my-account')
-            ->with('success', 'Bạn đã mua khóa học thành công');
-
         $input = $request->all();
-        $price =  Courses::find($input['course_id'])->price;
+        $price =  Course::find($input['course_id'])->price;
         $id = Auth::id();
         $user = User::find($id);
         if($user->credit > $price ) {
             $user->credit = $user->credit - $price;
             $user->save();
-            return view('my-account',compact('user'))->with('success', 'Bạn đã mua khóa học thành công');
+            return redirect()->route('my-account')->with('success', 'Bạn đã mua khóa học thành công');
         } else {
-            return view('my-account',compact('user'))->with('failure', 'Bạn không đủ credit');
+            return redirect()->route('my-account')->with('failure', 'Bạn không đủ credit');
         }
     }
 }

@@ -35,14 +35,16 @@
             {{ $course->teacher_id }}
         </div>
     </div>
-    {!! Form::open(array('route' => 'my-account-buy','method'=>'POST')) !!}
+    
+    <form action="{{ route('my-account-buy') }}" method="POST">
+    @csrf
     <div class="col-xs-12 col-sm-12 col-md-12">
-            {!! Form::text('teacher_id', null, array('placeholder' => 'Teacher ID','class' => 'form-control')) !!}
+            <input type="hidden" name="course_id" class="form-control" value="{{$course->id}}">
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <button type="submit" class="btn btn-primary">Mua khóa học</button>
     </div>
-    {!! Form::close() !!}
+    </form>
 </div>
 @endsection
 <p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
