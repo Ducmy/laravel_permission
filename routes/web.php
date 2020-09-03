@@ -32,3 +32,6 @@ Route::group(['middleware' => ['role:super-admin|admin']], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
 });
+
+Route::get('/my-account', 'MyAccountController@index')->name('my-account');
+Route::post('/my-account', 'MyAccountController@buy')->name('my-account-buy');
