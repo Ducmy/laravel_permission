@@ -26,8 +26,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Thông tin cá nhân</div>
-                <div class="card-message">
-                </div>
                 <div class="card-body">
                     <div class="card-body-name">Name:  {{$user->name}}</div>
                    <div class="card-body-credit">Số credit: {{$user->credit}}</div>
