@@ -20,13 +20,6 @@
                 <div class="card-body">
                     <div class="card-body-name">Name:  {{$user->name}}</div>
                    <div class="card-body-credit">Số credit: {{$user->credit}}</div>
-                   {!! Form::open(array('route' => 'my-account-buy','method'=>'POST')) !!}
-                   <div class="card-body-try-charge">
-                        Khóa học 1: -200 credit
-                        {!! Form::text('product_id', null, array('placeholder' => 'Mã sản phẩm','class' => 'form-control')) !!}
-                        <button type="submit" class="btn btn-primary">Mua thử</button>
-                   </div>
-                   {!! Form::close() !!}
                 </div>
             </div>
         </div>

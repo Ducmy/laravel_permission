@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Product;
+use App\Courses;
 
 class MyAccountController extends Controller
 {
@@ -33,11 +33,14 @@ class MyAccountController extends Controller
 
     public function buy(Request $request) {
         $this->validate($request, [
-            'product_id' => 'required',
+            'course_id' => 'required',
         ]);
-        $input = $request->all();
-        $price =  Product::find($input['product_id'])->credit;
 
+        return redirect()->route('my-account')
+            ->with('success', 'Bạn đã mua khóa học thành công');
+
+        $input = $request->all();
+        $price =  Courses::find($input['course_id'])->price;
         $id = Auth::id();
         $user = User::find($id);
         if($user->credit > $price ) {
