@@ -30,5 +30,5 @@
         </div>
     </div>
 </div>
-@endsection
 <p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
+@endsection
