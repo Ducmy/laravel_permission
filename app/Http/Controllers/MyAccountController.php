@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Course;
+use App\Bills;
 
 class MyAccountController extends Controller
 {
@@ -28,10 +29,13 @@ class MyAccountController extends Controller
     {
         $id = Auth::id();
         $user = User::find($id);
-        return view('my-account',compact('user'));
+        $bills = Bills::where('user_id', '=', $id)->pluck('course_id');
+        $myCourses = Course::whereIn('id', $bills)->get();
+        return view('my-account', compact('user', 'myCourses'));
     }
 
-    public function buy(Request $request) {
+    public function buy(Request $request)
+    {
         $this->validate($request, [
             'course_id' => 'required',
         ]);
@@ -40,7 +44,13 @@ class MyAccountController extends Controller
         $price =  Course::find($input['course_id'])->price;
         $id = Auth::id();
         $user = User::find($id);
-        if($user->credit > $price ) {
+        if ($user->credit > $price) {
+            //Update bills
+            $bill = new Bills;
+            $bill->user_id = Auth::id();
+            $bill->course_id = $input['course_id'];
+            $bill->save();
+
             $user->credit = $user->credit - $price;
             $user->save();
             return redirect()->route('my-account')->with('success', 'Bạn đã mua khóa học thành công');

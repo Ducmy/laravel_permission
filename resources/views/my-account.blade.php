@@ -13,24 +13,37 @@
 @endif
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
-  <p>{{ $message }}</p>
+    <p>{{ $message }}</p>
 </div>
 @endif
 @if ($message = Session::get('failure'))
 <div class="alert alert-danger">
-  <p>{{ $message }}</p>
+    <p>{{ $message }}</p>
 </div>
 @endif
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Thông tin cá nhân</div>
                 <div class="card-body">
-                    <div class="card-body-name">Name:  {{$user->name}}</div>
-                   <div class="card-body-credit">Số credit: {{$user->credit}}</div>
+                    <div class="card-body-name">Name: {{$user->name}}</div>
+                    <div class="card-body-credit">Số credit: {{$user->credit}}</div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Khóa học bạn đã mua</div>
+                <div class="card-body">
+                    <ul class="card-course-lists">
+                        @foreach($myCourses as $course)
+                        <li class=""><a href="{{route('courses.show', $course->id)}}" class="">{{$course->title}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

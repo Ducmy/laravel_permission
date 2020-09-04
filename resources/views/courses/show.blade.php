@@ -42,7 +42,15 @@
             <input type="hidden" name="course_id" class="form-control" value="{{$course->id}}">
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <button type="submit" class="btn btn-primary">Mua khóa học</button>
+        @auth
+            @if($isPurchased)
+                <div class="badge badge-success">Bạn đã mua khóa học này</div>
+            @else
+                <button type="submit" class="btn btn-primary">Mua khóa học</button>
+            @endif
+        @else
+            <button type="submit" class="btn btn-primary">Mua khóa học</button>
+        @endauth
     </div>
     </form>
 </div>

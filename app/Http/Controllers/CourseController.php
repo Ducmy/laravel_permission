@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\Bills;
+
 
 class CourseController extends Controller
 {
@@ -55,7 +59,16 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return view('courses.show', compact('course'));
+        $bill = Bills::where('user_id','=', Auth::id())
+        ->where('course_id','=',$course->id)
+        ->first();
+        if(!empty($bill)) {
+            $isPurchased = true;
+        } else {
+            $isPurchased = false;
+        }
+
+        return view('courses.show', compact('course','isPurchased'));
     }
 
     /**
@@ -66,7 +79,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('course.edit', compact('course'));
+        return view('courses.edit', compact('course'));
     }
 
     /**
