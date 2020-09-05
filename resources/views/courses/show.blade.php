@@ -45,6 +45,17 @@
         @auth
             @if($isPurchased)
                 <div class="badge badge-success">Bạn đã mua khóa học này</div>
+                <div class="course-lists">
+                    Danh sách bài học
+                    <ul class="courses">
+                    @foreach($ddcourses as $ddcourse)
+                        @if($ddcourse->course_id == $course->id)
+                        <li>
+                            <a href="{{ route('ddcourses.show',$ddcourse->id) }}">{{$ddcourse->dd_title}}</a></li>
+                        @endif
+                    @endforeach
+                    </ul>
+                </div>
             @else
                 <button type="submit" class="btn btn-primary">Mua khóa học</button>
             @endif

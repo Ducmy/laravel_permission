@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Bills;
+use App\DDCourse;
 
 
 class CourseController extends Controller
@@ -68,7 +69,8 @@ class CourseController extends Controller
             $isPurchased = false;
         }
 
-        return view('courses.show', compact('course','isPurchased'));
+        $ddcourses = DDCourse::get();
+        return view('courses.show', compact('course','isPurchased','ddcourses'));
     }
 
     /**
@@ -79,7 +81,8 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('courses.edit', compact('course'));
+        $ddcourses = DDCourse::get();
+        return view('courses.edit', compact('course','ddcourses'));
     }
 
     /**
@@ -92,12 +95,13 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
-            'credit' => 'required',
+            'title' => 'required',
+            'summary' => 'required',
+            'teacher_id' => 'required',
+            'price' => 'required',
         ]);
         $course->update($request->all());
-        return redirect()->route('products.index')
+        return redirect()->route('courses.show',$course->id)
             ->with('success', 'Khóa học đã được cập nhật');
     }
 

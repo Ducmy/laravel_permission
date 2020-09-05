@@ -14,4 +14,9 @@ class Course extends Model
     protected $fillable = [
         'title', 'summary', 'teacher_id', 'price'
     ];
+
+    public function ddcourse()
+    {
+        return $this->hasMany(DDCourse::class);
+    }
 }

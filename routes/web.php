@@ -34,6 +34,7 @@ Route::group(['middleware' => ['role:super-admin|admin']], function () {
 });
 
 Route::resource('/courses', 'CourseController');
+Route::resource('/ddcourses', 'DDCourseController');
 
 Route::get('/my-account', 'MyAccountController@index')->name('my-account');
 Route::post('/my-account-buy', 'MyAccountController@buy')->name('my-account-buy');
