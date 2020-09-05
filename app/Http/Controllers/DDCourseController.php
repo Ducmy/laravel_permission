@@ -86,13 +86,11 @@ class DDCourseController extends Controller
     public function update(Request $request, DDCourse $ddcourse)
     {
         request()->validate([
-            'title' => 'required',
-            'summary' => 'required',
-            'teacher_id' => 'required',
-            'price' => 'required',
+            'dd_title' => 'required',
+            'body' => 'required',
         ]);
         $ddcourse->update($request->all());
-        return redirect()->route('ddcourses.show',$ddcourse->id)
+        return redirect()->route('courses.edit',$ddcourse->course_id)
             ->with('success', 'Bài học đã được cập nhật.');
     }
 
@@ -107,5 +105,17 @@ class DDCourseController extends Controller
         $ddcourse->delete();
         return redirect()->route('courses.edit',$ddcourse->course_id)
             ->with('success', 'Bài học đã bị xóa.');
+    }
+
+    public function updateOrder(Request $request){
+        $posts = DDCourse::all();
+        foreach ($posts as $post) {
+            foreach ($request->order as $order) {
+                if ($order['id'] == $post->id) {
+                    $post->update(['order' => $order['position']]);
+                }
+            }
+        }
+        return response('Update Successfully.', 200);
     }
 }

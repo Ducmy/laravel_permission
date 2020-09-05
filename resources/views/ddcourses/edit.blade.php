@@ -28,8 +28,14 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Tiêu đề:</strong>
-                <input type="text" name="title" value="{{ $ddcourse->title }}" class="form-control" placeholder="Name">
+                <strong>Tên bài học</strong>
+                <input type="text" name="dd_title" value="{{ $ddcourse->dd_title }}" class="form-control" placeholder="Name">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Nội dung</strong>
+                <input type="text" name="body" value="{{ $ddcourse->body }}" class="form-control" placeholder="Name">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

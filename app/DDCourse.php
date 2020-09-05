@@ -8,8 +8,11 @@ class DDCourse extends Model
 {
     public $table = 'ddcourses';
     protected $fillable = [
-        'course_id', 'dd_title', 'body'
+        'course_id', 'dd_title', 'body', 
     ];
+    protected $attributes = [
+        'order' => 0,
+     ];
     public function course()
     {
         return $this->belongsTo(Course::class);
