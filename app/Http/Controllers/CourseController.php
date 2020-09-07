@@ -81,7 +81,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $ddcourses = DDCourse::get();
+        $ddcourses = DDCourse::orderBy('order','ASC')->get();
         return view('courses.edit', compact('course','ddcourses'));
     }
 

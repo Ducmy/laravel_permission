@@ -18,7 +18,7 @@ class CreateDdcoursesTable extends Migration
             $table->integer('course_id')->unsigned();
             $table->string("dd_title");
             $table->string("body");
-            $table->string("sort_id");
+            $table->integer('order')->default(0);
             $table->timestamps();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });

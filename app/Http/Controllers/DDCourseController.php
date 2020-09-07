@@ -19,7 +19,7 @@ class DDCourseController extends Controller
      */
     public function index()
     {
-        $ddcourses = DDCourse::latest()->paginate(5);
+        $ddcourses = DDCourse::orderBy('order','ASC')->latest()->paginate(5);
         return view('ddcourses.index', compact('ddcourses'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -108,7 +108,7 @@ class DDCourseController extends Controller
     }
 
     public function updateOrder(Request $request){
-        $posts = DDCourse::all();
+        $posts = Post::all();
         foreach ($posts as $post) {
             foreach ($request->order as $order) {
                 if ($order['id'] == $post->id) {
