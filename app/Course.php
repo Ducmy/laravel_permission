@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
      /**
      * The attributes that are mass assignable.
      *
@@ -18,5 +21,10 @@ class Course extends Model
     public function ddcourse()
     {
         return $this->hasMany(DDCourse::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 }

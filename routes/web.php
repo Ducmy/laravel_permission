@@ -35,7 +35,15 @@ Route::group(['middleware' => ['role:super-admin|admin']], function () {
 
 Route::resource('/courses', 'CourseController');
 Route::resource('/ddcourses', 'DDCourseController');
-Route::post('post-sortable','DDCourseSortingController@update');
+Route::resource('/comments', 'CommentController');
 
+// ROute::post('/comments','CommentController@store')->name('comments');
+
+Route::post('post-sortable','DDCourseSortingController@update');
 Route::get('/my-account', 'MyAccountController@index')->name('my-account');
 Route::post('/my-account-buy', 'MyAccountController@buy')->name('my-account-buy');
+
+
+
+
+

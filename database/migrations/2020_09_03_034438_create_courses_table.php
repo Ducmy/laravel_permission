@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->integer('teacher_id')->unsigned();
             $table->decimal('price',9,3);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

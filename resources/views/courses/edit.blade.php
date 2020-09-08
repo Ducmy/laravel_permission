@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('js')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
  <!-- <script src="{{ asset('js/sort.js') }}"></script> -->
@@ -70,14 +70,22 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <table id="table" class="table table-bordered">
-            Danh sách bài học
+            <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Tên bài học</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
             <tbody id="tablecontents">
                 @foreach($ddcourses as $key => $ddcourse)
                 @if($ddcourse->course_id == $course->id)
                 <tr class="row1" data-id="{{$ddcourse->id}}">
+                    <td class="">{{$key + 1}}</td>
+                    <td><a href="{{ route('ddcourses.show',$ddcourse->id) }}">{{$ddcourse->dd_title}}</a></td>
                     <td class="">
                         <form action="{{ route('ddcourses.destroy',$ddcourse->id) }}" method="POST">
-                            <a href="{{ route('ddcourses.show',$ddcourse->id) }}">{{$ddcourse->dd_title}}</a>
+                            
                             <a href="{{ route('ddcourses.edit',$ddcourse->id) }}" class="btn btn-success ml-3">Sửa</a>
                             @csrf
                             @method('DELETE')
