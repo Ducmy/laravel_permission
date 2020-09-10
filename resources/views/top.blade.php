@@ -1,33 +1,32 @@
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'I Can Fix') }}</title>
     <!-- Scripts -->
     @section('head_js')
     <script src="{{ asset('js/app.js') }}"></script>
+
     @show
-    @stack('js')
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
     <!-- Styles -->
-    @section('head_css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @show
-    @stack('css')
+    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/top/index.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <div id="app">
+    <header class="">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    I Can FIX 
+                    I Can FIX
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -66,12 +65,25 @@ document.getElementById('logout-form').submit();">
                 </div>
             </div>
         </nav>
-        <main class="py-4">
-            <div class="container">
-                @yield('content')
+    </header>
+    <div id="wrap">
+        <div id="banner-top" class="mb-3">
+            <div class="container d-flex justify-content-center align-items-center h-100">
+                <h2 class="banner-text">ICFix- Đào tạo trực tuyến</h2>
             </div>
-        </main>
+        </div>
+
+        <div class="content container">
+            <section id="danh-sach-khoa-hoc">
+                <h5 class="text-primary">Khóa học online:</h5>
+            </section>
+        </div>
     </div>
+    <footer class="footer">
+        <div class="container">
+            <h6 class="text-center"> Đào tạo trực tuyến ICFix - Copy right 2020</h6>
+        </div>
+    </footer>
 </body>
 
 </html>
