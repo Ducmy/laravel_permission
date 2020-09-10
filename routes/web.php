@@ -17,12 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('top');
-});
+Route::get('/', 'TopController@index')->name('top');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('products', 'ProductController');
@@ -34,8 +31,11 @@ Route::group(['middleware' => ['role:super-admin|admin']], function () {
 });
 
 Route::resource('/courses', 'CourseController');
+Route::resource('/khoa-hoc', 'KhoaHocController');
 Route::resource('/ddcourses', 'DDCourseController');
 Route::resource('/comments', 'CommentController');
+
+Route::get('khoa-hoc/{id}', 'KhoaHocController@show')->name('khoahoc');
 
 // ROute::post('/comments','CommentController@store')->name('comments');
 

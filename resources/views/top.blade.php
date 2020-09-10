@@ -76,6 +76,13 @@ document.getElementById('logout-form').submit();">
         <div class="content container">
             <section id="danh-sach-khoa-hoc">
                 <h5 class="text-primary">Khóa học online:</h5>
+                <ul>
+                    @foreach($courses as $key =>$course)
+                    <li class="">
+                        <a href="{{ route('khoahoc', [ 'id' => $course->id]) }}" class="">{{$course->title}}</a>
+                    </li>
+                    @endforeach
+                </ul>
             </section>
         </div>
     </div>
