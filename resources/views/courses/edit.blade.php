@@ -34,6 +34,12 @@
 </div>
 @endif
 
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
 <form action="{{ route('courses.update',$course->id) }}" method="POST">
     @csrf
     @method('PUT')
@@ -53,7 +59,16 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Giáo viên:</strong>
-                <input type="text" name="teacher_id" value="{{ $course->teacher_id }}" class="form-control" placeholder="Credit">
+                <select name="teacher_id" id="teacher" class="form-control" >
+                        <option value="1">Admin</option>
+                    @foreach($teachers as $key => $teacher)
+                        @if($teacher->id == $course->teacher_id)
+                            <option value="{{$teacher->id}}" selected>{{$teacher->name}}</option>
+                        @else
+                            <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -78,10 +93,12 @@
                 </tr>
               </thead>
             <tbody id="tablecontents">
+                <?php $index = 0;?>
                 @foreach($ddcourses as $key => $ddcourse)
                 @if($ddcourse->course_id == $course->id)
+                    <?php $index++;?>
                 <tr class="row1" data-id="{{$ddcourse->id}}">
-                    <td class="">{{$key + 1}}</td>
+                    <td class="">{{$index}}</td>
                     <td><a href="{{ route('ddcourses.show',$ddcourse->id) }}">{{$ddcourse->dd_title}}</a></td>
                     <td class="">
                         <form action="{{ route('ddcourses.destroy',$ddcourse->id) }}" method="POST">

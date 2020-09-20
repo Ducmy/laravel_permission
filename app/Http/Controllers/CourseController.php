@@ -82,7 +82,12 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         $ddcourses = DDCourse::orderBy('order','ASC')->get();
-        return view('courses.edit', compact('course','ddcourses'));
+        $teachers = User::whereHas(
+            'roles', function($q){
+                $q->where('name', 'teacher');
+            }
+        )->get();
+        return view('courses.edit', compact('course', 'teachers', 'ddcourses'));
     }
 
     /**
@@ -101,7 +106,7 @@ class CourseController extends Controller
             'price' => 'required',
         ]);
         $course->update($request->all());
-        return redirect()->route('courses.show',$course->id)
+        return redirect()->route('courses.edit',$course->id)
             ->with('success', 'Khóa học đã được cập nhật');
     }
 

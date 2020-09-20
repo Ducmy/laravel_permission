@@ -32,7 +32,10 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Giáo viên:</strong>
-            {{ $course->teacher_id }}
+            <?php
+                $teacher = App\User::find($course->teacher_id);
+             ?>
+            {{ $teacher->name }}
         </div>
     </div>
 
@@ -67,7 +70,7 @@
 
 
 </div>
-<div class="col-xs-12 col-sm-12 col-md-12">
+<!-- <div class="col-xs-12 col-sm-12 col-md-12">
     <h4>Phần bình luận</h4>
     @include('courses.commentsDisplay', ['comments' => $course->comments, 'course_id' => $course->id])
     <hr />
@@ -82,6 +85,6 @@
             <input type="submit" class="btn btn-success" value="Bình luận" />
         </div>
     </form>
-</div>
+</div> -->
 <p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
 @endsection

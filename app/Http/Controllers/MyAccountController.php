@@ -41,9 +41,11 @@ class MyAccountController extends Controller
         ]);
 
         $input = $request->all();
-        $price =  Course::find($input['course_id'])->price;
+        $course = Course::find($input['course_id']);
+        $price =  $course->price;
         $id = Auth::id();
         $user = User::find($id);
+        $teacher = User::find($course->teacher_id);
         if ($user->credit > $price) {
             //Update bills
             $bill = new Bills;
@@ -51,8 +53,14 @@ class MyAccountController extends Controller
             $bill->course_id = $input['course_id'];
             $bill->save();
 
+            // Trừ tiền học viên
             $user->credit = $user->credit - $price;
             $user->save();
+
+            // Cộng tiền 70% cho giáo viên
+            $teacher->credit = $teacher->credit + round($price*70/100);
+            $teacher->save();
+
             return redirect()->route('my-account')->with('success', 'Bạn đã mua khóa học thành công');
         } else {
             return redirect()->route('my-account')->with('failure', 'Bạn không đủ credit');

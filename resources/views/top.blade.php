@@ -38,19 +38,23 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a></li>
                         @else
-                        <li><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
+                            @hasrole('super-admin|admin')
+                            <li><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
+                            @endhasrole
+                            @hasrole('super-admin|admin|teacher')
+                            <li><a class="nav-link" href="{{ route('courses.index') }}">Quản lý khóa học </a></li>
+                            @endhasrole
                         <!-- <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
                         <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li> -->
-                        <li><a class="nav-link" href="{{ route('courses.index') }}">Quản lý khóa học </a></li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a href="{{ route('my-account') }}" class="dropdown-item">My info</a>
+                                <a href="{{ route('my-account') }}" class="dropdown-item">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -79,7 +83,7 @@ document.getElementById('logout-form').submit();">
                 <ul>
                     @foreach($courses as $key =>$course)
                     <li class="">
-                        <a href="{{ route('khoahoc', [ 'id' => $course->id]) }}" class="">{{$course->title}}</a>
+                        <a href="{{ route('khoahoc', [ 'course_id' => $course->id]) }}" class="">{{$course->title}}</a>
                     </li>
                     @endforeach
                 </ul>

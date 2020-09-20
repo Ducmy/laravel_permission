@@ -6,7 +6,7 @@
             <h2>Chi tiết bài học ở đây</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('courses.edit', $ddcourse->course_id) }}"> Quay lại</a>
+            <a class="btn btn-primary" href="{{ route('khoahoc', $ddcourse->course_id) }}"> Quay lại</a>
         </div>
     </div>
 </div>

@@ -30,12 +30,14 @@ Route::group(['middleware' => ['role:super-admin|admin']], function () {
     Route::resource('users', 'UserController');
 });
 
-Route::resource('/courses', 'CourseController');
-Route::resource('/khoa-hoc', 'KhoaHocController');
-Route::resource('/ddcourses', 'DDCourseController');
-Route::resource('/comments', 'CommentController');
+Route::group(['middleware' => ['role:super-admin|admin|teacher']], function () { 
+    Route::resource('/courses', 'CourseController');
+    Route::resource('/ddcourses', 'DDCourseController');
+});
 
-Route::get('khoa-hoc/{id}', 'KhoaHocController@show')->name('khoahoc');
+Route::resource('/comments', 'CommentController');
+Route::get('khoa-hoc/{course_id}', 'KhoaHocController@show')->name('khoahoc');
+Route::get('khoa-hoc/{course_id}/{ddcourse_id}', 'KhoaHocController@showddcourse')->name('khdetail');
 
 // ROute::post('/comments','CommentController@store')->name('comments');
 

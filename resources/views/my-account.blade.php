@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <ul class="card-course-lists">
                         @foreach($myCourses as $course)
-                        <li class=""><a href="{{route('courses.show', $course->id)}}" class="">{{$course->title}}</a></li>
+                        <li class=""><a href="{{route('khoahoc', $course->id)}}" class="">{{$course->title}}</a></li>
                         @endforeach
                     </ul>
                 </div>
