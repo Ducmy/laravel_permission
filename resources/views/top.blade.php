@@ -41,12 +41,12 @@
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a></li>
                         <li><a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a></li>
                         @else
-                            @hasrole('super-admin|admin')
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
-                            @endhasrole
-                            @hasrole('super-admin|admin|teacher')
-                            <li><a class="nav-link" href="{{ route('courses.index') }}">Quản lý khóa học </a></li>
-                            @endhasrole
+                        @hasrole('super-admin|admin')
+                        <li><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
+                        @endhasrole
+                        @hasrole('super-admin|admin|teacher')
+                        <li><a class="nav-link" href="{{ route('courses.index') }}">Quản lý khóa học </a></li>
+                        @endhasrole
                         <!-- <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
                         <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li> -->
                         <li class="nav-item dropdown">
@@ -71,24 +71,31 @@ document.getElementById('logout-form').submit();">
         </nav>
     </header>
     <div id="wrap">
-        <div id="banner-top" class="mb-3">
-            <div class="container d-flex justify-content-center align-items-center h-100">
-                <h2 class="banner-text">ICFix- Đào tạo trực tuyến</h2>
+        <section class="banner-top">
+            <div class="tim-kiem-khoa-hoc">
+                <form class="form-search-course">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập khóa học">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </form>
             </div>
-        </div>
+        </section>
 
-        <div class="content container">
-            <section id="danh-sach-khoa-hoc">
-                <h5 class="text-primary">Khóa học online:</h5>
-                <ul>
-                    @foreach($courses as $key =>$course)
-                    <li class="">
-                        <a href="{{ route('khoahoc', [ 'course_id' => $course->id]) }}" class="">{{$course->title}}</a>
-                    </li>
-                    @endforeach
-                </ul>
-            </section>
-        </div>
+        <section class="course-list mt-5">
+            <div class="container">
+                <section id="danh-sach-khoa-hoc">
+                    <h5 class="alert alert-success">Khóa học đã xây dựng</h5>
+                    <ul class="list-group">
+                        @foreach($courses as $key =>$course)
+                        <li class="list-group-item">
+                            <a href="{{ route('khoahoc', [ 'course_id' => $course->id]) }}" class="">{{$course->title}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </section>
+            </div>
+        </section>
     </div>
     <footer class="footer">
         <div class="container">
