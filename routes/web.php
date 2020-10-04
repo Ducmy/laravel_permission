@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+
+// Route cho trang top 
 Route::get('/', 'TopController@index')->name('top');
 
 Route::get('/home', 'HomeController@index')->name('home');

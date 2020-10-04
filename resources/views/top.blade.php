@@ -73,9 +73,9 @@ document.getElementById('logout-form').submit();">
     <div id="wrap">
         <section class="banner-top">
             <div class="tim-kiem-khoa-hoc">
-                <form class="form-search-course">
+                <form action="/" method="get" class="form-search-course">
                     <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập khóa học">
+                        <input type="text" name="filter[title]" class="form-control" placeholder="Nhập tên khóa học">
                     </div>
                     <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                 </form>
