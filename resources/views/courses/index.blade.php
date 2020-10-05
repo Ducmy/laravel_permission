@@ -1,11 +1,14 @@
 @extends('layouts.app')
+@push('css')
+<link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
+@endpush
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
             <h2>Quản lý khóa học</h2>
         </div>
-        <div class="pull-right">
+        <div class="pull-right mb-3 float-right">
             <a class="btn btn-success" href="{{ route('courses.create') }}"> Tạo khóa học mới</a>
         </div>
     </div>
@@ -27,7 +30,7 @@
     <tr>
         <td>{{ ++$i }}</td>
         <td>{{ $course->title }}</td>
-        <td>{{ $course->summary }}</td>
+        <td> <div class=""> {!! nl2br($course->summary) !!}</div></td>
         <td>{{ $course->price }}</td>
         <td>
             <form action="{{ route('courses.destroy',$course->id) }}" method="POST">
@@ -42,5 +45,4 @@
     @endforeach
 </table>
 {!! $courses->links() !!}
-<p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
 @endsection

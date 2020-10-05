@@ -9,6 +9,7 @@
 <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -78,7 +79,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Cập nhật thông tin khóa học</button>
         </div>
     </div>
 </form>
@@ -99,7 +100,7 @@
                     <?php $index++;?>
                 <tr class="row1" data-id="{{$ddcourse->id}}">
                     <td class="">{{$index}}</td>
-                    <td><a href="{{ route('ddcourses.show',$ddcourse->id) }}">{{$ddcourse->dd_title}}</a></td>
+                    <td><a href="{{ route('ddcourses.show',$ddcourse->id) }}" target="_blank">{{$ddcourse->dd_title}}</a></td>
                     <td class="">
                         <form action="{{ route('ddcourses.destroy',$ddcourse->id) }}" method="POST">
                             
@@ -163,5 +164,4 @@
         <a class="btn btn-success" href="{{ route('ddcourses.create', ['course_id' => $course->id]) }}">Tạo bài học mới</a>
     </div>
 </div>
-<p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
 @endsection

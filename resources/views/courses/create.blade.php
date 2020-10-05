@@ -1,10 +1,10 @@
 @extends('layouts.app')
+@push('css')
+<link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
+@endpush
 @section('content')
-<div class="row">
+<div class="row mb-3">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Thêm khóa học mới</h2>
-        </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('courses.index') }}"> Quay lại</a>
         </div>
@@ -38,7 +38,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Mô tả khóa học:</strong>
-                <textarea class="form-control" style="height:150px" name="summary" placeholder="Detail"></textarea>
+                <textarea class="form-control" style="height:150px" name="summary" placeholder=""></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -53,9 +53,8 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Tạo khóa học</button>
         </div>
     </div>
 </form>
-<p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
 @endsection

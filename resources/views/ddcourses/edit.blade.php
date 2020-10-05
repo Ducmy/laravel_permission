@@ -1,10 +1,10 @@
 @extends('layouts.app')
+@push('css')
+<link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
+@endpush
 @section('content')
 <div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Quản lý khóa học</h2>
-        </div>
+    <div class="col-lg-12 margin-tb mb-3">
         <div class="pull-right">
         <a class="btn btn-primary" href="{{ route('courses.edit', $ddcourse->course_id) }}"> Quay lại</a>
         </div>
@@ -35,13 +35,18 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nội dung</strong>
-                <input type="text" name="body" value="{{ $ddcourse->body }}" class="form-control" placeholder="Name">
+                <textarea class="form-control" style="height:150px" name="body" placeholder=""></textarea>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Tên bài học</strong>
+                <input type="text" name="url" value="{{ $ddcourse->url }}" class="form-control" placeholder="URL">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Cập nhập bài học</button>
         </div>
     </div>
 </form>
-<p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
 @endsection

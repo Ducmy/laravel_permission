@@ -31,7 +31,19 @@ class KhoaHocController extends Controller
 
     public function showddcourse($ddcourse_id)
     {
+
         $ddcourse = DDCourse::where('id', '=', $ddcourse_id)->first();
-        return view('khoahoc.showddcourse', compact('ddcourse'));
+        $course_id =  $ddcourse->course_id;
+        $course = Course::find($course_id);
+        $teacher = User::find($course->teacher_id);
+        $bill = Bills::where('user_id', '=', Auth::id())
+            ->where('course_id', '=', $course_id)
+            ->first();
+        if (!empty($bill)) {
+            $ddcourse = DDCourse::where('id', '=', $ddcourse_id)->first();
+            return view('khoahoc.showddcourse', compact('ddcourse'));
+        } else {
+            return redirect()->route('khoahoc', [ 'course_id' => $course->id]);
+        }
     }
 }

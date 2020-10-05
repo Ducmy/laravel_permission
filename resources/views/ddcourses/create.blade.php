@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('css')
+<link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
+@endpush
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -40,10 +43,15 @@
                 <textarea type="text" name="body" class="form-control" placeholder=""></textarea>
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Nội dung:</strong>
+                <input type="text" name="url" class="form-control" placeholder="https://">
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Tạo bài học</button>
         </div>
     </div>
 </form>
-<p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
 @endsection

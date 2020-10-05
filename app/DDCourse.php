@@ -8,7 +8,7 @@ class DDCourse extends Model
 {
     public $table = 'ddcourses';
     protected $fillable = [
-        'course_id', 'dd_title', 'body', 'order'
+        'course_id', 'dd_title', 'body', 'url', 'order'
     ];
     public function course()
     {

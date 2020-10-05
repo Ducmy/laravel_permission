@@ -1,4 +1,4 @@
-<html lang="{{ app()->getLocale() }}">
+<html lang="vn">
 
 <head>
     <meta charset="utf-8">
@@ -7,19 +7,26 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'I Can Fix') }}</title>
+
+
+    @section('head_css')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    @show
+    @stack('css')
+
+
     <!-- Scripts -->
     @section('head_js')
     <script src="{{ asset('js/app.js') }}"></script>
     @show
     @stack('js')
     <!-- Fonts -->
+
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <!-- Styles -->
-    @section('head_css')
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @show
-    @stack('css')
+    
 </head>
 
 <body>
@@ -27,29 +34,24 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    I Can FIX 
+                    I Can FIX
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto"></ul>
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
                         @guest
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a></li>
                         @else
-                            @hasrole('super-admin|admin')
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
-                            @endhasrole
-                            @hasrole('super-admin|admin|teacher')
-                            <li><a class="nav-link" href="{{ route('courses.index') }}">Quản lý khóa học </a></li>
-                            @endhasrole
-                            <!-- <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
-                            <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li> -->
+                        @hasrole('super-admin|admin')
+                        <li><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
+                        @endhasrole
+                        @hasrole('super-admin|admin|teacher')
+                        <li><a class="nav-link" href="{{ route('courses.index') }}">Quản lý khóa học </a></li>
+                        @endhasrole
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -71,9 +73,7 @@ document.getElementById('logout-form').submit();">
             </div>
         </nav>
         <main class="py-4">
-            <div class="container">
-                @yield('content')
-            </div>
+            @yield('content')
         </main>
     </div>
 </body>
