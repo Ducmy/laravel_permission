@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@push('css')
-<link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
-@endpush
 @section('content')
 <!-- <div class="row">
     <div class="col-lg-12 margin-tb">

@@ -5,14 +5,14 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-        <h5 class="alert alert-success text-center">{{ $course->title }}</h5>
+        <h5 class="alert alert-primary text-center">{{ $course->title }}</h5>
         </div>
     </div>
     <div class="mt-5"></div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <div class="mo-ta-ngan">Mô tả ngắn:</div>
+                <div class="mo-ta-ngan text-primary">Mô tả ngắn:</div>
                 <div class=""> {!! nl2br($course->summary) !!}</div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         @auth
                         @if($isPurchased)
-                        <h4 class=""><span class="badge badge-success">Nội dung bài học</span></h4>
+                        <h4 class=""><span class="badge badge-primary">Nội dung bài học</span></h4>
                         @else
                         <h4 class=""><span class="badge badge-success">{{ $course->price }} Xu</span></h4>
                         <button type="submit" class="btn btn-primary">Mua khóa học</button>
