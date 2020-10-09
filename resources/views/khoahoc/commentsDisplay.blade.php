@@ -14,6 +14,6 @@
                 <input type="submit" class="btn btn-warning" value="Trả lời" />
             </div>
         </form>
-        @include('courses.commentsDisplay', ['comments' => $comment->replies])
+        @include('khoahoc.commentsDisplay', ['comments' => $comment->replies])
     </div>
 @endforeach

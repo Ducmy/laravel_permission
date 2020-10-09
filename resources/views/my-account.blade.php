@@ -36,9 +36,9 @@
             <div class="card">
                 <div class="card-header">Khóa học bạn đã mua</div>
                 <div class="card-body">
-                    <ul class="card-course-lists">
+                    <ul class="list-group">
                         @foreach($myCourses as $course)
-                        <li class=""><a href="{{route('khoahoc', $course->id)}}" class="">{{$course->title}}</a></li>
+                        <li class="list-group-item"><a href="{{route('khoahoc', $course->id)}}" class="">{{$course->title}}</a></li>
                         @endforeach
                     </ul>
                 </div>

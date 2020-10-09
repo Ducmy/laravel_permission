@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
 {
@@ -30,6 +31,7 @@ class UserController extends Controller
         $roles = $user->getRoleNames();
         $role = $roles[0];
         if ($role === 'admin') {
+
             $data = User::orderBy('id', 'DESC')->where('id', '<>', 1)->paginate(5);
             $user_lists = array();
             $index = 0;
@@ -44,11 +46,17 @@ class UserController extends Controller
                 ->whereIn('id', $user_lists)
                 ->paginate(5);
 
-            return view('users.index', compact('data'))
+            return view('admin.admin.users.index', compact('data'))
                 ->with('i', ($request->input('page', 1) - 1) * 5);
         }
-        $data = User::orderBy('id', 'DESC')->paginate(5);
-        return view('users.index', compact('data'))
+
+        $data = QueryBuilder::for(User::class)
+            ->allowedFilters(['name', 'email'])
+            ->paginate(5)
+            ->appends(request()->query());
+        
+        // $data = User::orderBy('id', 'DESC')->paginate(5);
+        return view('admin.users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
     /**
@@ -59,7 +67,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles'));
+        return view('admin.users.create', compact('roles'));
     }
     /**
      * Store a newly created resource in storage.
@@ -80,7 +88,7 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
         return redirect()->route('users.index')
-            ->with('success', 'User created successfully');
+            ->with('success', 'Đã tạo thành viên.');
     }
     /**
      * Display the specified resource.
@@ -91,7 +99,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show', compact('user'));
+        return view('admin.users.show', compact('user'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -104,7 +112,7 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-        return view('users.edit', compact('user', 'roles', 'userRole'));
+        return view('admin.users.edit', compact('user', 'roles', 'userRole'));
     }
     /**
      * Update the specified resource in storage.
@@ -132,7 +140,7 @@ class UserController extends Controller
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($request->input('roles'));
         return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
+            ->with('success', 'Thành viên đã được cập nhật thành công');
     }
     /**
      * Remove the specified resource from storage.
@@ -144,6 +152,6 @@ class UserController extends Controller
     {
         User::find($id)->delete();
         return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully');
+            ->with('success', 'Thành viên đã được xóa');
     }
 }

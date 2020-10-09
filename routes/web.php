@@ -29,12 +29,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['role:super-admin|admin']], function () {
     Route::resource('roles', 'RoleController');
-    Route::resource('users', 'UserController');
+    Route::resource('/admin/users', 'UserController');
 });
 
 Route::group(['middleware' => ['role:super-admin|admin|teacher']], function () { 
-    Route::resource('/courses', 'CourseController');
-    Route::resource('/ddcourses', 'DDCourseController');
+    Route::resource('/admin/courses', 'CourseController');
+    Route::resource('/admin/ddcourses', 'DDCourseController');
 });
 
 Route::resource('/comments', 'CommentController');
@@ -44,10 +44,8 @@ Route::get('khoa-hoc/{course_id}/{ddcourse_id}', 'KhoaHocController@showddcourse
 // ROute::post('/comments','CommentController@store')->name('comments');
 
 Route::post('post-sortable','DDCourseSortingController@update');
-Route::get('/my-account', 'MyAccountController@index')->name('my-account');
+Route::get('/thong-tin-ca-nhan.html', 'MyAccountController@index')->name('my-account');
 Route::post('/my-account-buy', 'MyAccountController@buy')->name('my-account-buy');
 
 
-
-
-
+ 

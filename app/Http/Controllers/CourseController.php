@@ -20,7 +20,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::latest()->paginate(5);
-        return view('courses.index', compact('courses'))
+        return view('admin.courses.index', compact('courses'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -48,7 +48,7 @@ class CourseController extends Controller
             'price' => 'required',
         ]);
         Course::create($request->all());
-        return redirect()->route('courses.index')
+        return redirect()->route('admin.courses.index')
             ->with('success', 'Khóa học đã được tạo thành công!');
     }
 
@@ -70,7 +70,7 @@ class CourseController extends Controller
         }
 
         $ddcourses = DDCourse::get();
-        return view('courses.show', compact('course','isPurchased','ddcourses'));
+        return view('admin.courses.show', compact('course','isPurchased','ddcourses'));
     }
 
     /**
@@ -87,7 +87,7 @@ class CourseController extends Controller
                 $q->where('name', 'teacher');
             }
         )->get();
-        return view('courses.edit', compact('course', 'teachers', 'ddcourses'));
+        return view('admin.courses.edit', compact('course', 'teachers', 'ddcourses'));
     }
 
     /**
@@ -119,7 +119,7 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-        return redirect()->route('courses.index')
+        return redirect()->route('admin.courses.index')
             ->with('success', 'Khóa học đã được xóa.');
     }
 }

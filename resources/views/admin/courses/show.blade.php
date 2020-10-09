@@ -70,9 +70,9 @@
 
 
 </div>
-<!-- <div class="col-xs-12 col-sm-12 col-md-12">
+<div class="col-xs-12 col-sm-12 col-md-12">
     <h4>Phần bình luận</h4>
-    @include('courses.commentsDisplay', ['comments' => $course->comments, 'course_id' => $course->id])
+    @include('admin.courses.commentsDisplay', ['comments' => $course->comments, 'course_id' => $course->id])
     <hr />
     <h4>Thêm bình luận</h4>
     <form method="post" action="{{ route('comments.store') }}">
@@ -85,6 +85,6 @@
             <input type="submit" class="btn btn-success" value="Bình luận" />
         </div>
     </form>
-</div> -->
+</div>
 <p class="text-center text-primary"><small>Develop by MyNguyen</small></p>
 @endsection

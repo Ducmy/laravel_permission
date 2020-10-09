@@ -20,7 +20,7 @@ class DDCourseController extends Controller
     public function index()
     {
         $ddcourses = DDCourse::orderBy('order','ASC')->latest()->paginate(5);
-        return view('ddcourses.index', compact('ddcourses'))
+        return view('admin.ddcourses.index', compact('ddcourses'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -33,7 +33,7 @@ class DDCourseController extends Controller
     {
         $input = $request->all();
         $course_id = $input['course_id'];
-        return view('ddcourses.create',compact('course_id'));
+        return view('admin.ddcourses.create',compact('course_id'));
     }
 
     /**
@@ -50,7 +50,7 @@ class DDCourseController extends Controller
             'body' => 'required',
         ]);
         DDCourse::create($request->all());
-        return redirect()->route('courses.edit', $request->all()['course_id'])
+        return redirect()->route('admin.courses.edit', $request->all()['course_id'])
             ->with('success', 'Bài học đã được tạo thành công!');
     }
 
@@ -62,7 +62,7 @@ class DDCourseController extends Controller
      */
     public function show(DDCourse $ddcourse)
     {
-        return view('ddcourses.show', compact('ddcourse'));
+        return view('admin.ddcourses.show', compact('ddcourse'));
     }
 
     /**
@@ -73,7 +73,7 @@ class DDCourseController extends Controller
      */
     public function edit(DDCourse $ddcourse)
     {
-        return view('ddcourses.edit', compact('ddcourse'));
+        return view('admin.ddcourses.edit', compact('ddcourse'));
     }
 
     /**
@@ -90,7 +90,7 @@ class DDCourseController extends Controller
             'body' => 'required',
         ]);
         $ddcourse->update($request->all());
-        return redirect()->route('courses.edit',$ddcourse->course_id)
+        return redirect()->route('admin.courses.edit',$ddcourse->course_id)
             ->with('success', 'Bài học đã được cập nhật.');
     }
 
@@ -103,7 +103,7 @@ class DDCourseController extends Controller
     public function destroy(DDCourse $ddcourse)
     {
         $ddcourse->delete();
-        return redirect()->route('courses.edit',$ddcourse->course_id)
+        return redirect()->route('admin.courses.edit',$ddcourse->course_id)
             ->with('success', 'Bài học đã bị xóa.');
     }
 
