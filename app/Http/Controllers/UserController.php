@@ -48,7 +48,7 @@ class UserController extends Controller
 
             return view('admin.admin.users.index', compact('data'))
                 ->with('i', ($request->input('page', 1) - 1) * 5);
-        }-
+        }
 
         $data = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'email'])
