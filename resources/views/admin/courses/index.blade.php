@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Quản lý khóa học</h2>
+            <h2 class="text-danger">Quản lý khóa học</h2>
         </div>
         <div class="pull-right mb-3 float-right">
             <a class="btn btn-success" href="{{ route('courses.create') }}"> Tạo khóa học mới</a>
