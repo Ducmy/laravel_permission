@@ -18,6 +18,7 @@ function randomString($length = 10)
 @endpush
 @push('js')
 <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
+<script src="{{ asset('js/khoahoc/khoahoc.js')  }}"></script>
 @endpush
 @section('content')
 <div class="container">
@@ -31,7 +32,7 @@ function randomString($length = 10)
 
             <div class="error_video">
                 <?php
-                $i = range(1, 2);
+                $i = range(1, 1);
                 foreach ($i as $key) { ?>
                     <div class=""><a href="https://youtube.com/<?php echo randomString(); ?>" class=""></a>
                         <div>
@@ -66,13 +67,31 @@ function randomString($length = 10)
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                          <ul class="list-group">
                             @foreach($ddcourses as $v)
-                                <li class="list-group-item <?php if($v->id == $ddcourse->id)  { echo "active";}?>">
-                                    <a href="{{ route('khdetail', [$course_id, $v->id] )}}">{{$v->dd_title}}</a>
-                                </li>
+                            <li class="list-group-item <?php if ($v->id == $ddcourse->id) {
+                                                            echo "active";
+                                                        } ?>">
+                                <a href="{{ route('khdetail', [$course_id, $v->id] )}}">{{$v->dd_title}}</a>
+                            </li>
                             @endforeach
                         </ul>
                     </div>
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Phần bình luận ở đây</div>
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            @include('khoahoc.commentsDisplay', ['comments' => $comments, 'ddcourse_id' => $ddcourse->id])
+                            <hr />
+                            <h4>Đặt câu hỏi</h4>
+                            <form method="post" action="{{ route('comments.store') }}">
+                                @csrf
+                                <div class="form-group mb-2">
+                                    <textarea class="form-control" name="body"></textarea>
+                                    <input type="hidden" name="lession_id" value="{{ $ddcourse->id }}" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="Gửi" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
 

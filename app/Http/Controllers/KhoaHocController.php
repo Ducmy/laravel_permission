@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Bills;
+use App\Comment;
 use App\DDCourse;
 
 
@@ -31,6 +32,7 @@ class KhoaHocController extends Controller
 
     public function showddcourse($course_id , $ddcourse_id)
     {
+
         $ddcourse = DDCourse::where('id', '=', $ddcourse_id)->first();
         $course_id =  $ddcourse->course_id;
         $course = Course::find($course_id);
@@ -40,11 +42,14 @@ class KhoaHocController extends Controller
             ->first();
 
         if (!empty($bill)) {
-            $ddcourse = DDCourse::where('id', '=', $ddcourse_id)->first();
+
+            $ddcourse = DDCourse::find($ddcourse_id);
+            
+            $comments = Comment::where('lession_id', '=',$ddcourse_id)->get();
 
             $ddcourses = DDCourse::where('course_id','=', $course_id)->orderBy('order')->get();
 
-            return view('khoahoc.showddcourse', compact('ddcourse','ddcourses','course_id'));
+            return view('khoahoc.showddcourse', compact('ddcourse','ddcourses','course_id', 'comments'));
         } else {
             return redirect()->route('khoahoc', [ 'course_id' => $course->id]);
         }

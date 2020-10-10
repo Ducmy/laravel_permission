@@ -23,8 +23,8 @@ class Course extends Model
         return $this->hasMany(DDCourse::class);
     }
 
-    public function comments()
-    {
-        return $this->hasMany(Comment::class)->whereNull('parent_id');
-    }
+    // public function comments()
+    // {
+    //     return $this->hasMany(Comment::class)->whereNull('parent_id');
+    // }
 }

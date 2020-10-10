@@ -31,7 +31,7 @@ iframe .ytp-chrome-,
 
 .error_video div.plyr {
     max-width: 750px;
-    height: 400px;
+    height: 350px;
     margin: 0 auto;
 }
 
@@ -82,4 +82,15 @@ iframe .ytp-chrome-,
     user-select: none;
     /* Non-prefixed version, currently
                       supported by Chrome, Edge, Opera and Firefox */
+}
+
+.display-comment input[type='text']{
+    display: none;
+}
+
+.submit_btn {
+    display: inline-block;
+    border: navajowhite;
+    margin-left: 20px;
+    background: none;
 }
