@@ -63,7 +63,7 @@ class MyAccountController extends Controller
 
             return redirect()->route('my-account')->with('success', 'Bạn đã mua khóa học thành công');
         } else {
-            return redirect()->route('my-account')->with('failure', 'Bạn không đủ credit');
+            return redirect()->route('my-account')->with('failure', 'Rất tiếc ! Bạn không đủ credit! :(');
         }
     }
 }

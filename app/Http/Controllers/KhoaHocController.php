@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Bills;
@@ -53,5 +54,20 @@ class KhoaHocController extends Controller
         } else {
             return redirect()->route('khoahoc', [ 'course_id' => $course->id]);
         }
+    }
+
+    public function rating(Request $request) {
+
+
+        request()->validate(['rate' => 'required']);
+        $post = Course::find($request->id);
+        // $rating = new \willvincent\Rateable\Rating;
+        // $rating->rating = $request->rate;
+        // $rating->user_id =  Auth::id();
+        $post->rateOnce($request->rate);
+        // $post->ratings()->save($rating);
+
+
+        return back();
     }
 }

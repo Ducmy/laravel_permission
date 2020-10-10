@@ -2,11 +2,13 @@
 
 namespace App;
 
+use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
+    use Rateable;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
      /**
