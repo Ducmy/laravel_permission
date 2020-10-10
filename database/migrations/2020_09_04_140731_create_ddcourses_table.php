@@ -17,7 +17,7 @@ class CreateDdcoursesTable extends Migration
             $table->id();
             $table->integer('course_id')->unsigned();
             $table->string("dd_title");
-            $table->string("body");
+            $table->longText("body");
             $table->string('url');
             $table->integer('order')->default(0);
             $table->timestamps();

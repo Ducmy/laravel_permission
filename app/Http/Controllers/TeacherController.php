@@ -12,7 +12,7 @@ use Hash;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class UserController extends Controller
+class TeacherController extends Controller
 {
 
     function __construct()
@@ -48,10 +48,11 @@ class UserController extends Controller
 
             return view('admin.admin.users.index', compact('data'))
                 ->with('i', ($request->input('page', 1) - 1) * 5);
-        }-
+        }
 
         $data = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'email'])
+            ->role('teacher')
             ->paginate(5)
             ->appends(request()->query());
         

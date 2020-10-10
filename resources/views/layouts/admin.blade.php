@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title> I CAN FIX | Khóa học trực tuyến</title>
+    <title>{{ config('app.name', 'I Can Fix') }}</title>
 
 
     @section('head_css')
@@ -26,7 +26,7 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <!-- Styles -->
-    
+
 </head>
 
 <body>
@@ -46,12 +46,6 @@
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a></li>
                         <li><a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a></li>
                         @else
-                        @hasrole('super-admin|admin')
-                         {{-- <li><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li> --}}
-                        @endhasrole
-                        @hasrole('super-admin|admin|teacher')
-                        <li><a class="nav-link" href="{{ route('courses.index') }}">Trang quản trị </a></li>
-                        @endhasrole
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -73,7 +67,26 @@ document.getElementById('logout-form').submit();">
             </div>
         </nav>
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row">
+                    <div class="col-3">
+                            <ul class="list-group">
+                                @hasrole('super-admin|admin')
+                                <li class="list-group-item"><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
+                                @endhasrole
+                                @hasrole('super-admin|admin')
+                                <li class="list-group-item"><a class="nav-link" href="{{ route('teachers.index') }}">Quản lý giáo viên</a></li>
+                                @endhasrole
+                                @hasrole('super-admin|admin|teacher')
+                                <li class="list-group-item"><a class="nav-link" href="{{ route('courses.index') }}">Quản lý khóa học </a></li>
+                                @endhasrole
+                            </ul>
+                    </div>
+                    <div class="col-9">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>

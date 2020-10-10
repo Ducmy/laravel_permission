@@ -31,7 +31,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        return view('admin.courses.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class CourseController extends Controller
             'price' => 'required',
         ]);
         Course::create($request->all());
-        return redirect()->route('admin.courses.index')
+        return redirect()->route('courses.index')
             ->with('success', 'Khóa học đã được tạo thành công!');
     }
 
@@ -119,7 +119,7 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-        return redirect()->route('admin.courses.index')
+        return redirect()->route('courses.index')
             ->with('success', 'Khóa học đã được xóa.');
     }
 }

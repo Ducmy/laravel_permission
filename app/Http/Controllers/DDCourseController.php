@@ -50,7 +50,7 @@ class DDCourseController extends Controller
             'body' => 'required',
         ]);
         DDCourse::create($request->all());
-        return redirect()->route('admin.courses.edit', $request->all()['course_id'])
+        return redirect()->route('courses.edit', $request->all()['course_id'])
             ->with('success', 'Bài học đã được tạo thành công!');
     }
 
@@ -90,7 +90,7 @@ class DDCourseController extends Controller
             'body' => 'required',
         ]);
         $ddcourse->update($request->all());
-        return redirect()->route('admin.courses.edit',$ddcourse->course_id)
+        return redirect()->route('courses.edit',$ddcourse->course_id)
             ->with('success', 'Bài học đã được cập nhật.');
     }
 
@@ -103,7 +103,7 @@ class DDCourseController extends Controller
     public function destroy(DDCourse $ddcourse)
     {
         $ddcourse->delete();
-        return redirect()->route('admin.courses.edit',$ddcourse->course_id)
+        return redirect()->route('courses.edit',$ddcourse->course_id)
             ->with('success', 'Bài học đã bị xóa.');
     }
 

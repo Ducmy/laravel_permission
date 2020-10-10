@@ -32,7 +32,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         @auth
                         @if($isPurchased)
-                        <h4 class=""><span class="badge badge-primary">Nội dung bài học</span></h4>
+                        <h4 class=""><span class="badge badge-primary">Nội dung khóa học</span></h4>
                         @else
                         <h4 class=""><span class="badge badge-success">{{ $course->price }} Xu</span></h4>
                         <button type="submit" class="btn btn-primary">Mua khóa học</button>
@@ -56,7 +56,7 @@
                 @foreach($ddcourses as $ddcourse)
                 @if($ddcourse->course_id == $course->id)
                 <li class="list-group-item">
-                    <a href="{{ route('khdetail',[ $course->id, $ddcourse->id]) }}" target="_blank">{{$ddcourse->dd_title}}</a>
+                    <a href="{{ route('khdetail', [$course, $ddcourse->id] )}}" target="_blank">{{$ddcourse->dd_title}}</a>
                 </li>
                 @endif
                 @endforeach
@@ -65,6 +65,7 @@
 
     </div>
 
+    {{--
     <div class="col-xs-12 col-sm-12 col-md-12">
         <h4>Phần bình luận</h4>
         @include('khoahoc.commentsDisplay', ['comments' => $course->comments, 'course_id' => $course->id])
@@ -81,6 +82,7 @@
             </div>
         </form>
     </div>
+    --}}
     @endif
     @endauth
 </div>

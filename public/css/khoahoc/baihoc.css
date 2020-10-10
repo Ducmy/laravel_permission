@@ -1,0 +1,85 @@
+main {
+    background: rgb(11, 38, 61);
+}
+
+.noi_dung_bai_hoc {
+    background: white;
+    padding: 10px 5%;
+    padding-bottom: 120px;
+    margin: 40px 0px;
+    margin-bottom: 120px;
+}
+
+.baihoc_title {
+    font-weight: 400;
+    text-align: center;
+    color: #ffffff;
+}
+
+.plyr iframe {
+    transition: 0.2s filter linear;
+}
+
+.plyr.plyr--paused iframe {
+    filter: blur(1.5rem);
+}
+
+iframe .ytp-chrome-,
+.ytp-show-cards-title {
+    display: none !important;
+}
+
+.error_video div.plyr {
+    max-width: 750px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.text {
+    width: 100%;
+    height: unset;
+    margin: 0 auto;
+}
+
+.baihoc_title {
+    font-weight: bold;
+    margin-bottom: 30px;
+    ;
+}
+
+.content_title {
+    margin-top: 40px;
+    text-decoration: underline;
+}
+
+.content_title {
+    color: orange;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.list-group-item.active a {
+    color: #ffff;
+}
+
+.dsread,
+.error_video {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                      supported by Chrome, Edge, Opera and Firefox */
+}

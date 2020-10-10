@@ -25,13 +25,12 @@ class KhoaHocController extends Controller
             $isPurchased = false;
         }
 
-        $ddcourses = DDCourse::get();
+        $ddcourses = DDCourse::orderBy('order')->get();
         return view('khoahoc.show', compact('course', 'teacher', 'isPurchased', 'ddcourses'));
     }
 
-    public function showddcourse($ddcourse_id)
+    public function showddcourse($course_id , $ddcourse_id)
     {
-
         $ddcourse = DDCourse::where('id', '=', $ddcourse_id)->first();
         $course_id =  $ddcourse->course_id;
         $course = Course::find($course_id);
@@ -39,9 +38,13 @@ class KhoaHocController extends Controller
         $bill = Bills::where('user_id', '=', Auth::id())
             ->where('course_id', '=', $course_id)
             ->first();
+
         if (!empty($bill)) {
             $ddcourse = DDCourse::where('id', '=', $ddcourse_id)->first();
-            return view('khoahoc.showddcourse', compact('ddcourse'));
+
+            $ddcourses = DDCourse::where('course_id','=', $course_id)->orderBy('order')->get();
+
+            return view('khoahoc.showddcourse', compact('ddcourse','ddcourses','course_id'));
         } else {
             return redirect()->route('khoahoc', [ 'course_id' => $course->id]);
         }
