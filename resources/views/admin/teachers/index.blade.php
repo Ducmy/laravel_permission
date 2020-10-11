@@ -60,8 +60,8 @@
         @endif
       </td>
       <td>
-        {{-- <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Xem</a> --}}
-        <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Cập nhật</a>
+        {{-- <a class="btn btn-info" href="{{ route('teachers.show',$user->id) }}">Xem</a> --}}
+        <a class="btn btn-primary" href="{{ route('teachers.edit',$user->id) }}">Cập nhật</a>
         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
         {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
         {!! Form::close() !!}

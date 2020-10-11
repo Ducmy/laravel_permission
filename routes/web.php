@@ -28,6 +28,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['role:super-admin|admin']], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('/admin/users', 'UserController');
+    Route::post('tien-tien/{user_id}','UserController@naptien')->name('naptien');
+    Route::post('thanh-toan/{user_id}','UserController@thanhtoan')->name('thanhtoan');
 });
 
 // Quản lý học giáo viên

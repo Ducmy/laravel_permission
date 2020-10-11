@@ -1,14 +1,6 @@
 .mo-ta-ngan {
-    font-size: 20px;
+    font-size: 15px;
     color: green;
-    margin-bottom: 10px;
-}
-
-.mo-ta-ngan + div {
-    border: 1px solid grey;
-    padding: 20px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
 }
 
 .course-lists {
@@ -205,12 +197,31 @@ textarea {
 
 .glyphicon-star-empty:before {
     content: "\f005"!important;
+    font-size: 30px;
 }
 
 .glyphicon-star:before {
     content: "\f005"!important;
+    font-size: 30px;
 }
 
 #input-1:focus {
     text-decoration: none;
+    outline: none;
 }
+
+.btn_review_submit {
+   
+    width: 100px;
+    margin-top: 30px;
+}
+
+.rating-container .caption {
+    display: none!important;
+}
+
+.rating-container {
+    margin-left: -10px;
+    margin-bottom: 5px;
+}
+

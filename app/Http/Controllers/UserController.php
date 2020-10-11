@@ -125,7 +125,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
+            // 'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
@@ -142,6 +142,41 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success', 'Thành viên đã được cập nhật thành công');
     }
+
+    public function naptien(Request $request, $id) {
+
+        $this->validate($request, [
+            'credit' => 'required',
+        ]);
+        $input = $request->all();
+
+        $user = User::find($id);
+        // dd($user->credit);
+        // dd($input);
+
+        $user->credit = $user->credit + (float)$input['credit'];
+        $user->save();
+
+        return redirect()->route('users.index')
+            ->with('success', 'Bạn đã nạp tiền cho thành viên');
+    }
+
+    public function thanhtoan(Request $request, $id) {
+
+        $user = User::find($id);
+        if( ($user->getRoleNames())[0] === 'teacher') {
+            $user->credit = 0;
+            $user->save();
+            return redirect()->route('users.index')
+            ->with('success', 'Đã thanh toán cho giáo viên.');
+        } else {
+            return redirect()->route('users.index')
+            ->with('success', 'Thanh toán sai đối tượng.');
+        }
+
+        
+    }
+
     /**
      * Remove the specified resource from storage.
      *

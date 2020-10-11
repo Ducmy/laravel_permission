@@ -46,7 +46,7 @@ class TeacherController extends Controller
                 ->whereIn('id', $user_lists)
                 ->paginate(5);
 
-            return view('admin.admin.users.index', compact('data'))
+            return view('admin.admin.teachers.index', compact('data'))
                 ->with('i', ($request->input('page', 1) - 1) * 5);
         }
 
@@ -57,7 +57,7 @@ class TeacherController extends Controller
             ->appends(request()->query());
         
         // $data = User::orderBy('id', 'DESC')->paginate(5);
-        return view('admin.users.index', compact('data'))
+        return view('admin.teachers.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
     /**
@@ -68,7 +68,7 @@ class TeacherController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
-        return view('admin.users.create', compact('roles'));
+        return view('admin.teachers.create', compact('roles'));
     }
     /**
      * Store a newly created resource in storage.
@@ -100,7 +100,7 @@ class TeacherController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('admin.users.show', compact('user'));
+        return view('admin.teachers.show', compact('user'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -113,7 +113,7 @@ class TeacherController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-        return view('admin.users.edit', compact('user', 'roles', 'userRole'));
+        return view('admin.teachers.edit', compact('user', 'roles', 'userRole'));
     }
     /**
      * Update the specified resource in storage.

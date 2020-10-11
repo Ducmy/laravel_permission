@@ -93,8 +93,6 @@ function randomString($length = 10)
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
             <script>

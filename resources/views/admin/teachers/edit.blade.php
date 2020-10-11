@@ -18,61 +18,90 @@
         </ul>
     </div>
     @endif
-    {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Tên:</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Email:</strong>
-                {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control', 'disabled')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Mật khẩu:</strong>
-                {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Xác nhận mật khẩu:</strong>
-                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-            </div>
-        </div>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Thông tin thành viên</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Thanh toán cho GV</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Tên:</strong>
+                        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Email:</strong>
+                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control', 'disabled')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Mật khẩu:</strong>
+                        {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Xác nhận mật khẩu:</strong>
+                        {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                    </div>
+                </div>        
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Vị trí:</strong>
+                        <select class="form-control" multiple="" name="roles[]">
+                            <option value="teacher" selected>Giáo viên</option>
+                            <option value="user">Học viên</option>
+                        </select>
+                    </div>
+                </div>
 
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Vị trí:</strong>
-                <select class="form-control" multiple="" name="roles[]">
-                    <option value="teacher">Giáo viên</option>
-                    <option value="user">Học viên</option>
-                </select>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Credit:</strong>
+                        {!! Form::text('credit', null, array('placeholder' => 'Credit','class' => 'form-control', 'disabled')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <button type="submit" class="btn btn-primary">Cập nhập</button>
+                </div>
             </div>
+            {!! Form::close() !!}
         </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Credit:</strong>
-                {!! Form::text('credit', null, array('placeholder' => 'Credit','class' => 'form-control', 'disabled')) !!}
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+         {!! Form::model($user, ['method' => 'POST','route' => ['thanhtoan', $user->id]]) !!}
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Số tiền hiện có:</strong>
+                        {!! Form::text('credit', null, array('placeholder' => 'Credit','class' => 'form-control', 'disabled')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <button type="submit" class="btn btn-primary">Thanh toán</button>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Cập nhập</button>
+            {!! Form::close() !!}
         </div>
     </div>
-    {!! Form::close() !!}
 </div>
 
 <style>
     .form-group {
         width: 50%;
-        margin: 20px auto;
+        margin: 20px 0px 20px 0px;
+    }
+
+    .tab-content .btn {
+        text-align: left !important;
     }
 </style>
 @endsection

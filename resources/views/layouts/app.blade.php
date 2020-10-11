@@ -76,6 +76,7 @@ document.getElementById('logout-form').submit();">
             @yield('content')
         </main>
     </div>
+    <div class="text-center p-3 bg-primary text-white">Copyright@2020 ICanFix</div>
 </body>
 
 </html>
