@@ -24,5 +24,9 @@
         border: 1px dotted black;
         padding: 50px 20px;
     }
+
+    .content br {
+        display: none;
+    }
 </style>
 @endsection

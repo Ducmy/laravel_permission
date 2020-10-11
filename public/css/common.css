@@ -24,3 +24,20 @@ a:hover {
 #app {
     min-height: 600px;
 }
+
+
+@media only screen and (min-width: 1000px) { 
+    body {
+        margin-top: 70px;
+    }
+    nav {
+        box-shadow: 0px 3px 6px #00000026;
+        position: fixed!important;
+        height: 70px;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        background: white;
+        z-index: 999;
+    }
+}

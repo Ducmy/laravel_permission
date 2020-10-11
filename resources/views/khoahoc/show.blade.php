@@ -53,7 +53,7 @@
 
                                         @else
                                         <h4 class=""><span class="badge badge-success">{{ $course->price }} Xu</span></h4>
-                                        <button type="submit" class="btn btn-primary">Mua khóa học</button>
+                                        <button type="submit" class="btn w-100 btn-danger font-weight-bold">Mua khóa học</button>
                                         @endauth
                                     </div>
                                 </div>

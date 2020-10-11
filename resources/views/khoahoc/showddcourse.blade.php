@@ -57,9 +57,10 @@ function randomString($length = 10)
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        <div class="text dsread">
-                            <p>{!! nl2br($ddcourse->body) !!}</p>
+                        <div class="text dsread content">
+                            
                             <div>
+                            {!! nl2br($ddcourse->body) !!}
                             </div>
                         </div>
 
@@ -95,10 +96,17 @@ function randomString($length = 10)
                 </div>
             </div>
 
+            <style>
+                .content br {
+                    display: none;
+                }
+            </style>
+
             <script>
                 const player = new Plyr('#player', {
                     title: ' Nội dung bài',
                 });
+
                 // document.addEventListener('contextmenu', function(e) {
                 //     e.preventDefault();
                 // });
