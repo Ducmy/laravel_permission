@@ -1,6 +1,6 @@
 .banner-top {
-    background: grey;
-    height: 300px;
+    background-image: linear-gradient(#0047ab, white);
+    min-height: 25rem;
     position: relative;
     display: flex;
     justify-content: center;
@@ -8,10 +8,11 @@
 }
 
 .tim-kiem-khoa-hoc {
-    max-width: 800px;
+    max-width: 400px;
     margin: 0 auto;
-    width: 50%;
+    width: 30%;
     z-index: 100;
+    margin-top: 100px;
 }
 
 .form-search-course {
@@ -20,28 +21,27 @@
 
 .banner-top::before {
     position: absolute;
-    content: "300X1600";
+    content: "Khóa học nghề trực tuyến IC Fix";
     display: block;
-    font-size: 60px;
-    font-weight: bold;
-    color: rgb(171, 189, 210);
+    font-size: 40px;
+    font-weight: normal;
+    color: rgb(234, 236, 237);
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
     z-index: 0;
+    padding-top: 100px;
 }
 
 .course-list {
     padding-top: 30px;
-    background: rgb(13, 54, 87);
+    background: lightseagreen;
 }
 
 .dskhoahoc {
     list-style: none;
     padding-left: 0;
-    background: rgb(13, 54, 87);
     padding: 30px 20px;
     margin: 20px;
     margin-left: 0px;
@@ -52,7 +52,7 @@
     margin-bottom: 40px;
 }
 
-.item_kh .wrap{
+.item_kh .wrap {
     background: white;
     padding: 20px 10px;
     display: flex;
@@ -106,4 +106,34 @@
 
 .link {
     margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .py-4 {
+        padding-top: 0px;
+    }
+
+    .banner-top::before {
+        font-size: 25px;
+    }
+
+    .banner-top {
+        min-height: 15rem;
+    }
+
+    .form-search-course {
+        display: flex;
+        margin-top: auto;
+    }
+
+    .tim-kiem-khoa-hoc {
+        width: unset;
+        margin-top: 125px;
+    }
+
+    .tim-kiem-khoa-hoc .btn {
+        display: block;
+        height: 37px;
+        margin-left: 20px;
+    }
 }

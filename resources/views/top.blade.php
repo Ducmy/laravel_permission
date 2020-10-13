@@ -8,7 +8,7 @@
         <div class="tim-kiem-khoa-hoc">
             <form action="/" method="get" class="form-search-course">
                 <div class="form-group">
-                    <input type="text" name="filter[title]" class="form-control" placeholder="Nhập tên khóa học" />
+                    <input type="text" name="filter[title]" class="form-control" placeholder="Tìm khóa học" />
                 </div>
                 <button type="submit" class="btn btn-primary">Tìm kiếm</button>
             </form>
@@ -45,6 +45,36 @@
                     @endforeach
                 </ul>
             </section>
+        </div>
+    </section>
+
+    <section class="introduce">
+        <div class="container">
+            <div class="row">
+                YOUTUBE VIDEO
+            </div>
+        </div>
+    </section>
+    <section class="doi_ngu_giao_vien">
+        <div class="container">
+            <div class="row">
+                Đội ngũ giáo viên IC Fix
+            </div>
+        </div>
+    </section>
+   
+    <section class="doi_ngu_giao_vien">
+        <div class="container">
+            <div class="row">
+                Đăng ký thành viên
+            </div>
+        </div>
+    </section>
+    <section class="lien_he">
+        <div class="container">
+            <div class="row">
+                Đăng ký liên hệ
+            </div>
         </div>
     </section>
 </div>
