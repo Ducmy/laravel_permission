@@ -12,6 +12,7 @@
     @section('head_css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/index.css') }}" rel="stylesheet">
     @show
     @stack('css')
 
@@ -69,7 +70,7 @@ document.getElementById('logout-form').submit();">
         <main class="py-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-2">
                             <ul class="list-group">
                                 @hasrole('super-admin|admin')
                                 <li class="list-group-item"><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
@@ -82,7 +83,7 @@ document.getElementById('logout-form').submit();">
                                 @endhasrole
                             </ul>
                     </div>
-                    <div class="col-9">
+                    <div class="col-10">
                         @yield('content')
                     </div>
                 </div>

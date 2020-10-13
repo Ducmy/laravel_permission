@@ -30,7 +30,7 @@ a:hover {
     body {
         margin-top: 70px;
     }
-    nav {
+    nav.navbar {
         box-shadow: 0px 3px 6px #00000026;
         position: fixed!important;
         height: 70px;

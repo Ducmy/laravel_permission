@@ -15,6 +15,7 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('thumb')->default('not_found.png');;
             $table->string('title');
             $table->string('summary');
             $table->integer('teacher_id')->unsigned();

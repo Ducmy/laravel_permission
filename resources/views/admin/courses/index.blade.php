@@ -18,6 +18,7 @@
 <table class="table table-bordered">
     <tr>
         <th>No</th>
+        <th>Ảnh mô tả</th>
         <th>Tiêu đề</th>
         <th>Miêu tả</th>
         <th>Giá</th>
@@ -26,6 +27,9 @@
     @foreach ($courses as $course)
     <tr>
         <td>{{ ++$i }}</td>
+        <th>
+            <img class="img-fluid img-thumbnail" src="{{ asset('images/not_found.png') }}" alt="{{ $course->title }}">
+        </th>
         <td>{{ $course->title }}</td>
         <td> <div class=""> {!! nl2br($course->summary) !!}</div></td>
         <td>{{ $course->price }}</td>
