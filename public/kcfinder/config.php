@@ -25,7 +25,8 @@ $_CONFIG = array(
 
     'theme' => "oxygen",
 
-    'uploadURL' => "upload",
+    // 'uploadURL' => "upload",
+    'uploadURL' => "https://skilledu.vn/public/kcfinder",
     'uploadDir' => "",
 
     'dirPerms' => 0755,

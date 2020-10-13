@@ -51,4 +51,5 @@ CKEDITOR.editorConfig = function(config) {
         "/kcfinder/upload.php?opener=ckeditor&type=images";
     config.filebrowserFlashUploadUrl =
         "/kcfinder/upload.php?opener=ckeditor&type=flash";
+    config.filebrowserUploadMethod = "form";
 };
