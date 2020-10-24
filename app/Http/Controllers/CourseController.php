@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Bills;
 use App\DDCourse;
+use App\Category;
 
 
 class CourseController extends Controller
@@ -38,7 +39,10 @@ class CourseController extends Controller
                 $q->where('name', 'teacher');
             }
         )->get();
-        return view('admin.courses.create',compact('teachers'));
+        
+        $categories = Category::get();
+
+        return view('admin.courses.create',compact('teachers','categories'));
     }
 
     /**
@@ -94,7 +98,9 @@ class CourseController extends Controller
                 $q->where('name', 'teacher');
             }
         )->get();
-        return view('admin.courses.edit', compact('course', 'teachers', 'ddcourses'));
+
+        $categories = Category::get();
+        return view('admin.courses.edit', compact('course', 'teachers', 'ddcourses','categories'));
     }
 
     /**

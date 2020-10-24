@@ -52,6 +52,17 @@
                 </select>
             </div>
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Chuyên mục</strong>
+                <select name="cat_id" id="cat_id" class="form-control" >
+                    @foreach($categories as $key => $cat)
+                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Tạo khóa học</button>
         </div>

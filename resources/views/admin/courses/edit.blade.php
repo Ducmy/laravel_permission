@@ -72,6 +72,21 @@
                 </select>
             </div>
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Chuyên mục:</strong>
+                <select name="cat_id" id="cat_id" class="form-control" >
+                    @foreach($categories as $key => $cat)
+                        @if($cat->id == $course->cat_id)
+                            <option value="{{$cat->id}}" selected>{{$cat->name}}</option>
+                        @else
+                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Giá:</strong>

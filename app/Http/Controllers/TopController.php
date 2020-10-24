@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Category;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class TopController extends Controller
@@ -15,7 +16,8 @@ class TopController extends Controller
             ->allowedFilters('title')
             ->get();
         // $courses = Course::get();
-        return view('top', compact('courses'));
+        $categories =  Category::get();
+        return view('top', compact('courses', 'categories'));
     }
 
 
