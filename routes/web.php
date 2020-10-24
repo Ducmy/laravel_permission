@@ -47,6 +47,10 @@ Route::group(['middleware' => ['role:super-admin|admin|teacher']], function () {
 });
 
 
+//Quản lý chuyên mục bài viết
+Route::get('categories', 'CategoryController@index');
+
+
 // Quản lý comment cho khóa học
 Route::resource('/comments', 'CommentController');
 Route::get('khoa-hoc/{course_id}', 'KhoaHocController@show')->name('khoahoc');

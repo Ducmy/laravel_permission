@@ -18,7 +18,7 @@ class CreateDdcoursesTable extends Migration
             $table->integer('course_id')->unsigned();
             $table->string("dd_title");
             $table->longText("body");
-            $table->string('url')->default("https://icfix.vn/");
+            $table->string('url')->default("");
             $table->integer('order')->default(0);
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
