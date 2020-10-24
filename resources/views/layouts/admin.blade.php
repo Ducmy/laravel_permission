@@ -71,17 +71,31 @@ document.getElementById('logout-form').submit();">
             <div class="container">
                 <div class="row">
                     <div class="col-2">
-                            <ul class="list-group">
-                                @hasrole('super-admin|admin')
-                                <li class="list-group-item"><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
-                                @endhasrole
-                                @hasrole('super-admin|admin')
-                                <li class="list-group-item"><a class="nav-link" href="{{ route('teachers.index') }}">Quản lý giáo viên</a></li>
-                                @endhasrole
-                                @hasrole('super-admin|admin|teacher')
-                                <li class="list-group-item"><a class="nav-link" href="{{ route('courses.index') }}">Quản lý khóa học </a></li>
-                                @endhasrole
-                            </ul>
+                        <ul class="list-group">
+                            @hasrole('super-admin|admin')
+                            <li class="list-group-item"><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
+                            @endhasrole
+                            @hasrole('super-admin|admin')
+                            <li class="list-group-item"><a class="nav-link" href="{{ route('teachers.index') }}">Quản lý giáo viên</a></li>
+                            @endhasrole
+                            @hasrole('super-admin|admin|teacher')
+                            <li class="list-group-item">
+                                <a class="nav-link" href="{{ route('courses.index') }}">
+                                    Quản lý khóa học
+                                </a>
+
+                                <div class="dropdown ml-5 mt-2">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Qlý chuyên mục
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{ route('index_cat') }}">Danh sách chuyên mục</a>
+                                        <a class="dropdown-item" href="{{ route('create_cat') }}">Tạo mới</a>
+                                    </div>
+                                </div>
+                            </li>
+                            @endhasrole
+                        </ul>
                     </div>
                     <div class="col-10">
                         @yield('content')

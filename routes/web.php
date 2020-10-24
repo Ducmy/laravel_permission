@@ -44,12 +44,14 @@ Route::group(['middleware' => ['role:super-admin|admin|teacher']], function () {
     // Mặc định route name là course
     Route::resource('/admin/courses', 'CourseController');
     Route::resource('/admin/ddcourses', 'DDCourseController');
+    //Quản lý chuyên mục bài viết
+    Route::get('/admin/categories', 'CategoryController@index')->name('index_cat');
+    Route::get('/admin/categories/create', 'CategoryController@create')->name('create_cat');
+    Route::post('/admin/categories/store', 'CategoryController@store')->name('store_cat');
+    Route::get('/admin/categories/{cat_id}/edit/', 'CategoryController@edit')->name('edit_cat');
+    Route::post('/admin/categories/update/{cat_id}', 'CategoryController@update')->name('update_cat');
+    Route::delete('/admin/categories/{cat_id}/destroy/', 'CategoryController@destroy')->name('destroy_cat');
 });
-
-
-//Quản lý chuyên mục bài viết
-Route::get('categories', 'CategoryController@index');
-
 
 // Quản lý comment cho khóa học
 Route::resource('/comments', 'CommentController');
