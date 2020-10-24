@@ -2,6 +2,11 @@
 @push('css')
 <link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
 @endpush
+
+@push('js')
+<script src="/ckeditor/ckeditor.js"></script> 
+@endpush
+
 @section('content')
 <div class="row mb-3">
     <div class="col-lg-12 margin-tb">
@@ -27,6 +32,12 @@
             <div class="form-group">
                 <strong>Tiêu đề:</strong>
                 <input type="text" name="title" class="form-control" placeholder="Khóa học A, B...">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Thumbnail</strong>
+                <textarea id="editor1" class="form-control" style="height:150px" name="thumb" cols="10" rows="10"></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -68,4 +79,27 @@
         </div>
     </div>
 </form>
+
+<script type="text/javascript">  
+   CKEDITOR.replace( 'editor1' );  
+</script> 
+
+<style>
+    .cke_toolbar {
+    display: none;
+}
+
+#cke_25 {
+    display: block;
+}
+
+.cke_button  {
+    display: none!important;
+}
+
+#cke_26 {
+    display: block!important;
+}
+</style>
+
 @endsection

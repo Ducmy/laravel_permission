@@ -22,12 +22,12 @@
                         Giới thiệu
                     </h4>
                     <p class="pt-3">
-                    Đội ngũ giáo viên ICFix trẻ trung, năng động đầy nhiệt huyết.<br>
-                    Cung cấp các khóa học trực tuyến để sửa chữa iPhone, iPad, Watch...<br>
-                    Được giáo viên truyền thụ võ công, lành tày nghề trước khi áp dụng vào thực tế sửa chữa cho máy khách.<br>
-                    Bạn cũng có thể đăng ký làm giáo viên cho khóa học!<br>
-                    Hãy đến với EduICFix!!!<br>
-                    <br><br>
+                        Đội ngũ giáo viên ICFix trẻ trung, năng động đầy nhiệt huyết.<br>
+                        Cung cấp các khóa học trực tuyến để sửa chữa iPhone, iPad, Watch...<br>
+                        Được giáo viên truyền thụ võ công, lành tày nghề trước khi áp dụng vào thực tế sửa chữa cho máy khách.<br>
+                        Bạn cũng có thể đăng ký làm giáo viên cho khóa học!<br>
+                        Hãy đến với EduICFix!!!<br>
+                        <br><br>
 
                         <a href="#all_course" class="btn btn-danger">Học ngày nào!</a>
                     </p>
@@ -88,8 +88,15 @@
     </section>
     <section class="doi_ngu_giao_vien pt-3 pb-5">
         <div class="container">
+            <h4 class="text-center text-danger">Đội ngũ giáo viên IC Fix</h4>
             <div class="row">
-                <h4 class="text-center text-danger">Đội ngũ giáo viên IC Fix</h4>
+                <ul class="form-group teacher_list">
+                    @foreach($teachers as $teacher)
+                    <li class="">
+                        {{$teacher->name}}
+                    </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </section>

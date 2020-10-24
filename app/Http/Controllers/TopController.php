@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Category;
+use App\User;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class TopController extends Controller
