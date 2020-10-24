@@ -85,6 +85,9 @@
 </form>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="alert alert-warning">Drag and drop để sắp xếp bài học!</div> 
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
         <table id="table" class="table table-bordered">
             <thead>
                 <tr>

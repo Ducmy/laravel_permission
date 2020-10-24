@@ -34,9 +34,15 @@
                             </div>
                             <div class="link col-12">
                                 <div class="row">
-                                    <div class="price badge badge-success"> {{$course->price}} Xu</div>
+                                    <div class="price badge badge-success"> 
+                                    @if($course->price == 0)
+                                        Miễn phí
+                                    @else
+                                        {{$course->price}} Xu
+                                    @endif
+                                   </div>
                                     <div class="detail badge badge-danger">
-                                        <a href="{{ route('khoahoc', [ 'course_id' => $course->id]) }}" class="">Chi tiết</a>
+                                        <a href="{{ route('khoahoc', [ 'course_id' => $course->id]) }}" class="">Mua</a>
                                     </div>
                                 </div>
                             </div>

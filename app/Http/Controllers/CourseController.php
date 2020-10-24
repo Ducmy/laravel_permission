@@ -20,6 +20,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::latest()->paginate(5);
+
         return view('admin.courses.index', compact('courses'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -31,7 +32,13 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.courses.create');
+
+        $teachers = User::whereHas(
+            'roles', function($q){
+                $q->where('name', 'teacher');
+            }
+        )->get();
+        return view('admin.courses.create',compact('teachers'));
     }
 
     /**

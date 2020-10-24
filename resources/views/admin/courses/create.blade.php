@@ -44,11 +44,11 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Giáo viên</strong>
-                <select name="teacher_id">
-                    <option value="1">Giáo viên A</option>
-                    <option value="2">Giáo viên B</option>
-                    <option value="3">Giáo viên C</option>
-                    <option value="4">Giáo viên D</option>
+                <select name="teacher_id" id="teacher" class="form-control" >
+                        <option value="1" selected>Admin</option>
+                    @foreach($teachers as $key => $teacher)
+                        <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
