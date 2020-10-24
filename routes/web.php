@@ -64,7 +64,7 @@ Route::post('post-sortable','DDCourseSortingController@update');
 
 
 // Quản lý thông tin cá nhân
-Route::get('/thong-tin-ca-nhan.html', 'MyAccountController@index')->name('my-account');
+Route::get('/thong-tin-ca-nhan', 'MyAccountController@index')->name('my-account');
 Route::post('/my-account-buy', 'MyAccountController@buy')->name('my-account-buy');
 
 

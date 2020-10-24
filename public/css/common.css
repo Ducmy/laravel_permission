@@ -25,6 +25,12 @@ a:hover {
     min-height: 600px;
 }
 
+.copy_right {
+    position: fixed;
+    width: 100%;
+    bottom: 0; 
+}
+
 
 @media only screen and (min-width: 1000px) { 
     body {

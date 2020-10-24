@@ -17,9 +17,14 @@ class TopController extends Controller
             ->allowedFilters('title')
             ->where('active', '=', 1)
             ->get();
-        // $courses = Course::get();
-        $categories =  Category::get();
-        return view('top', compact('courses', 'categories'));
+        $categories =  Category::where('id', '<>', 1)->get();
+
+        $teachers = User::whereHas(
+            'roles', function($q){
+                $q->where('name', 'teacher');
+            }
+        )->get();
+        return view('top', compact('courses', 'categories', 'teachers'));
     }
 
 
