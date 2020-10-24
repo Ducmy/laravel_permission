@@ -13,6 +13,9 @@ class DDCourse extends Model
 
     public $table = 'ddcourses';
 
+    protected $attributes = [
+        'url' => "no_video_link",
+    ];
 
     protected $fillable = [
         'course_id', 'dd_title', 'body', 'url', 'order'

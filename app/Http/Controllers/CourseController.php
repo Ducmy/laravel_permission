@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Bills;
 use App\DDCourse;
+use App\Category;
 
 
 class CourseController extends Controller
@@ -20,6 +21,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::latest()->paginate(5);
+
         return view('admin.courses.index', compact('courses'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -31,7 +33,16 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.courses.create');
+
+        $teachers = User::whereHas(
+            'roles', function($q){
+                $q->where('name', 'teacher');
+            }
+        )->get();
+        
+        $categories = Category::get();
+
+        return view('admin.courses.create',compact('teachers','categories'));
     }
 
     /**
@@ -87,7 +98,9 @@ class CourseController extends Controller
                 $q->where('name', 'teacher');
             }
         )->get();
-        return view('admin.courses.edit', compact('course', 'teachers', 'ddcourses'));
+
+        $categories = Category::get();
+        return view('admin.courses.edit', compact('course', 'teachers', 'ddcourses','categories'));
     }
 
     /**
@@ -121,5 +134,13 @@ class CourseController extends Controller
         $course->delete();
         return redirect()->route('courses.index')
             ->with('success', 'Khóa học đã được xóa.');
+    }
+
+
+    public function status(Request $request, $id) {
+        $course = Course::find($id);
+        $course->active = $request->all()['active'];
+        $course->save();
+        return response()->json('Đã cập nhật status');
     }
 }

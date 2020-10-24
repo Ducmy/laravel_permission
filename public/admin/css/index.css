@@ -1,0 +1,12 @@
+.container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1600px;
+}
+
+.img-thumbnail {
+    width: 200px;
+    object-fit: cover;  
+}
+
+.row1 {
+    cursor: move;
+}

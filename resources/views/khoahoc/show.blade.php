@@ -46,7 +46,14 @@
                                         @if($isPurchased)
                                         <h4 class=""><span class="badge badge-success">Đã mua</span></h4>
                                         @else
-                                        <h4 class="w-100"><span class="badge badge-success">{{ $course->price }} Credit</span></h4>
+                                        <h4 class="w-100"><span class="badge badge-success">
+                                        @if($course->price == 0)
+                                        Miễn phí
+                                        @else
+                                            {{$course->price}} Xu
+                                        @endif  
+                                    
+                                    </span></h4>
                                         <button type="submit" class="btn btn-danger font-weight-bold">Mua khóa học</button>
 
                                         @endif

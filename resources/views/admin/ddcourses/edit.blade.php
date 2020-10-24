@@ -46,7 +46,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Link video</strong>
+                <strong>Link youtube</strong>
                 <input type="text" name="url" value="{{ $ddcourse->url }}" class="form-control" placeholder="URL">
             </div>
         </div>

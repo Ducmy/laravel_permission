@@ -23,7 +23,7 @@ function randomString($length = 10)
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-4">
             <h5 class="baihoc_title">
                 {{ $ddcourse->dd_title }}
             </h5>
@@ -31,6 +31,13 @@ function randomString($length = 10)
         <div class="col-xs-12 col-sm-12 col-md-12">
 
             <div class="error_video">
+
+                <?php 
+                    $file_headers = @get_headers($ddcourse->url);
+                    if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found'):
+                        ?> <h1 class="alert alert-warning text-center">I CAN FIX</h1><?php
+                    else:
+                ?>
                 <?php
                 $i = range(1, 1);
                 foreach ($i as $key) { ?>
@@ -42,6 +49,7 @@ function randomString($length = 10)
                             <iframe src="{{$ddcourse->url}}?showinfo=0&origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" allowfullscreen allowtransparency allow="autoplay"></iframe>
                         </div>
                     </div>
+                            <?php endif;?>
             </div>
             <div class="noi_dung_bai_hoc">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

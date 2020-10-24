@@ -17,7 +17,7 @@ class Course extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'summary', 'teacher_id', 'price'
+        'title', 'summary', 'teacher_id', 'price', 'cat_id'
     ];
 
     public function ddcourse()
@@ -25,8 +25,8 @@ class Course extends Model
         return $this->hasMany(DDCourse::class);
     }
 
-    // public function comments()
-    // {
-    //     return $this->hasMany(Comment::class)->whereNull('parent_id');
-    // }
+    public function category()
+    {
+        return $this->hasMany(Category::class)->whereNull('cat_id');
+    }
 }

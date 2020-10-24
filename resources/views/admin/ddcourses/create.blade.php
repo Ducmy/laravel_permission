@@ -2,6 +2,10 @@
 @push('css')
 <link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
 @endpush
+
+@push('js')
+<script src="/ckeditor/ckeditor.js"></script> 
+@endpush
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -40,13 +44,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nội dung:</strong>
-                <textarea type="text" name="body" class="form-control" placeholder=""></textarea>
+                <textarea id="editor1" class="form-control" name="body" cols="30" rows="12"></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nội dung:</strong>
-                <input type="text" name="url" class="form-control" placeholder="https://">
+                <strong>Link youtube:</strong>
+                <input type="text" name="url" value="" class="form-control" placeholder="Điền link video">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -54,4 +58,7 @@
         </div>
     </div>
 </form>
+<script type="text/javascript">  
+   CKEDITOR.replace( 'editor1' );  
+</script> 
 @endsection

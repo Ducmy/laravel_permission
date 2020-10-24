@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Category;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class TopController extends Controller
@@ -13,13 +15,21 @@ class TopController extends Controller
 
         $courses = QueryBuilder::for(Course::class)
             ->allowedFilters('title')
+            ->where('active', '=', 1)
             ->get();
-        // $courses = Course::get();
-        return view('top', compact('courses'));
+        $categories =  Category::where('id', '<>', 1)->get();
+
+        $teachers = User::whereHas(
+            'roles', function($q){
+                $q->where('name', 'teacher');
+            }
+        )->get();
+        return view('top', compact('courses', 'categories', 'teachers'));
     }
 
 
-    function searchCourse(Request $Request) {
+    function searchCourse(Request $Request)
+    {
 
         $courses = QueryBuilder::for(Course::class)
             ->allowedFilters('title')

@@ -49,7 +49,19 @@ class DDCourseController extends Controller
             'dd_title' => 'required',
             'body' => 'required',
         ]);
+
+        if(empty($request->all()['url'])) {
+            $ddcourse = new DDCourse();
+            $ddcourse->course_id = $request->all()['course_id'];
+            $ddcourse->dd_title = $request->all()['dd_title'];
+            $ddcourse->body = $request->all()['body'];
+            $ddcourse->save();
+            return redirect()->route('courses.edit', $request->all()['course_id'])
+            ->with('success', 'Bài học đã được tạo thành công!');
+        }
+
         DDCourse::create($request->all());
+
         return redirect()->route('courses.edit', $request->all()['course_id'])
             ->with('success', 'Bài học đã được tạo thành công!');
     }

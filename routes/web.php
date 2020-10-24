@@ -43,9 +43,16 @@ Route::group(['middleware' => ['role:super-admin|admin']], function () {
 Route::group(['middleware' => ['role:super-admin|admin|teacher']], function () { 
     // Mặc định route name là course
     Route::resource('/admin/courses', 'CourseController');
+    Route::post('/admin/courses/status/{id}', 'CourseController@status')->name('courseStatus');
     Route::resource('/admin/ddcourses', 'DDCourseController');
+    //Quản lý chuyên mục bài viết
+    Route::get('/admin/categories', 'CategoryController@index')->name('index_cat');
+    Route::get('/admin/categories/create', 'CategoryController@create')->name('create_cat');
+    Route::post('/admin/categories/store', 'CategoryController@store')->name('store_cat');
+    Route::get('/admin/categories/{cat_id}/edit/', 'CategoryController@edit')->name('edit_cat');
+    Route::post('/admin/categories/update/{cat_id}', 'CategoryController@update')->name('update_cat');
+    Route::delete('/admin/categories/{cat_id}/destroy/', 'CategoryController@destroy')->name('destroy_cat');
 });
-
 
 // Quản lý comment cho khóa học
 Route::resource('/comments', 'CommentController');
@@ -57,7 +64,7 @@ Route::post('post-sortable','DDCourseSortingController@update');
 
 
 // Quản lý thông tin cá nhân
-Route::get('/thong-tin-ca-nhan.html', 'MyAccountController@index')->name('my-account');
+Route::get('/thong-tin-ca-nhan', 'MyAccountController@index')->name('my-account');
 Route::post('/my-account-buy', 'MyAccountController@buy')->name('my-account-buy');
 
 
