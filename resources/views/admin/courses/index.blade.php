@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @push('css')
 <link href="{{ asset('css/admin/index.css') }}" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 @endpush
 @section('content')
 <div class="row">
@@ -21,6 +22,7 @@
         <th>Ảnh mô tả</th>
         <th>Tiêu đề</th>
         <th>Miêu tả</th>
+        <th>Trạng thái</th>
         <th>Giá</th>
         <th width="280px">Thao tác</th>
     </tr>
@@ -31,7 +33,18 @@
             <img class="img-fluid img-thumbnail" src="{{ asset('images/not_found.png') }}" alt="{{ $course->title }}">
         </th>
         <td>{{ $course->title }}</td>
-        <td> <div class=""> {!! nl2br($course->summary) !!}</div></td>
+        <td>
+            <div class=""> {!! nl2br($course->summary) !!}</div>
+        </td>
+        <td>
+
+            <input id="toggle-event" type="checkbox" @if($course->active)
+            checked
+            @endif
+            data-toggle="toggle">
+
+
+        </td>
         <td>{{ $course->price }}</td>
         <td>
             <form action="{{ route('courses.destroy',$course->id) }}" method="POST">
@@ -46,4 +59,36 @@
     @endforeach
 </table>
 {!! $courses->links() !!}
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script>
+    $(function() {
+        $('#toggle-event').change(function(e) {
+            var status = ($(this).prop('checked')) ? 1 : 0;
+            console.log(status);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            e.preventDefault();
+            var formData = {
+                active: status,
+            };
+            var type = "POST";
+            var ajaxurl = "{{ route('courseStatus', ['id' => $course->id]) }}";
+
+        $.ajax({
+            type: type,
+            url: ajaxurl,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+            },
+            error: function (data) {
+                console.log(data);
+            }
+            });
+        })
+    });
+</script>
 @endsection

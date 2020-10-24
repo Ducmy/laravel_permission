@@ -43,6 +43,7 @@ Route::group(['middleware' => ['role:super-admin|admin']], function () {
 Route::group(['middleware' => ['role:super-admin|admin|teacher']], function () { 
     // Mặc định route name là course
     Route::resource('/admin/courses', 'CourseController');
+    Route::post('/admin/courses/status/{id}', 'CourseController@status')->name('courseStatus');
     Route::resource('/admin/ddcourses', 'DDCourseController');
     //Quản lý chuyên mục bài viết
     Route::get('/admin/categories', 'CategoryController@index')->name('index_cat');

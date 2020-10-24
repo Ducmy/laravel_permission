@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('summary');
             $table->integer('teacher_id')->unsigned();
             $table->integer('cat_id')->default(1);
+            $table->boolean('active')->default(1);
             $table->decimal('price',9,3);
             $table->timestamps();
             $table->softDeletes();

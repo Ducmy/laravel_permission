@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+
 namespace App\Http\Controllers;
 
 use App\Course;
@@ -14,6 +15,7 @@ class TopController extends Controller
 
         $courses = QueryBuilder::for(Course::class)
             ->allowedFilters('title')
+            ->where('active', '=', 1)
             ->get();
         // $courses = Course::get();
         $categories =  Category::get();
@@ -21,7 +23,8 @@ class TopController extends Controller
     }
 
 
-    function searchCourse(Request $Request) {
+    function searchCourse(Request $Request)
+    {
 
         $courses = QueryBuilder::for(Course::class)
             ->allowedFilters('title')

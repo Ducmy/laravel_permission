@@ -135,4 +135,12 @@ class CourseController extends Controller
         return redirect()->route('courses.index')
             ->with('success', 'Khóa học đã được xóa.');
     }
+
+
+    public function status(Request $request, $id) {
+        $course = Course::find($id);
+        $course->active = $request->all()['active'];
+        $course->save();
+        return response()->json('Đã cập nhật status');
+    }
 }
