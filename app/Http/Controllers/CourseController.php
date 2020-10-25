@@ -58,6 +58,7 @@ class CourseController extends Controller
             'summary' => 'required',
             'price' => 'required',
         ]);
+        
         Course::create($request->all());
         return redirect()->route('courses.index')
             ->with('success', 'Khóa học đã được tạo thành công!');

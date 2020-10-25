@@ -3,6 +3,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+<script src="/ckeditor/ckeditor.js"></script> 
  <!-- <script src="{{ asset('js/sort.js') }}"></script> -->
 @endpush
 @push('css')
@@ -49,6 +50,16 @@
             <div class="form-group">
                 <strong>Tiêu đề:</strong>
                 <input type="text" name="title" value="{{ $course->title }}" class="form-control" placeholder="Name">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Ảnh đại diện:</strong>
+                <div class="course_thumb"  style="max-width: 600px;">
+                    <textarea id="editor1" class="form-control" style="height:150px" name="thumb" cols="10" rows="10">
+                        {!! $course->thumb !!}
+                    </textarea>
+                </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -182,4 +193,24 @@
         <a class="btn btn-success" href="{{ route('ddcourses.create', ['course_id' => $course->id]) }}">Tạo bài học mới</a>
     </div>
 </div>
+<script type="text/javascript">  
+   CKEDITOR.replace( 'editor1' );  
+</script> 
+<style>
+    .cke_toolbar {
+    display: none;
+}
+
+#cke_25 {
+    display: block;
+}
+
+.cke_button  {
+    display: none!important;
+}
+
+#cke_26 {
+    display: block!important;
+}
+</style>
 @endsection

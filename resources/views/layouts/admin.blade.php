@@ -70,7 +70,7 @@ document.getElementById('logout-form').submit();">
         <main class="py-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-3">
                         <ul class="list-group">
                             @hasrole('super-admin|admin')
                             <li class="list-group-item"><a class="nav-link" href="{{ route('users.index') }}">Quản lý thành viên</a></li>
@@ -97,7 +97,7 @@ document.getElementById('logout-form').submit();">
                             @endhasrole
                         </ul>
                     </div>
-                    <div class="col-10">
+                    <div class="col-9">
                         @yield('content')
                     </div>
                 </div>

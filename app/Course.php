@@ -17,7 +17,7 @@ class Course extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'summary', 'teacher_id', 'price', 'cat_id'
+        'title', 'summary', 'teacher_id', 'price', 'cat_id', 'thumb'
     ];
 
     public function ddcourse()

@@ -5,3 +5,8 @@ main {
 .pagination {
     justify-content: center;
 }
+
+.course_thumb img {
+    width: 100%!important;
+    height: auto!important;
+}

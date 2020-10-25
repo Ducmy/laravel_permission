@@ -30,10 +30,17 @@
     <tr>
         <td>{{ ++$i }}</td>
         <th>
-            <img class="img-fluid img-thumbnail" src="{{ asset('images/not_found.png') }}" alt="{{ $course->title }}">
+            <div class="course_thumb"  style="max-width: 100px;">
+                @if($course->thumb == 'not_found.png')
+                    <img class="img-fluid img-thumbnail" src="{{ asset('images/not_found.png') }}" alt="{{ $course->title }}">
+                @else
+                    {!! $course->thumb !!}
+                @endif
+            </div>
         </th>
         <td>{{ $course->title }}</td>
         <td>
+
             <div class=""> {!! nl2br($course->summary) !!}</div>
         </td>
         <td>
