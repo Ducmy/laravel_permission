@@ -37,8 +37,8 @@
             <div class=""> {!! nl2br($course->summary) !!}</div>
         </td>
         <td>
-
-            <input id="toggle-event" type="checkbox" @if($course->active)
+            <input type="hidden" id="course_{{$course->id}}" name="id" value="{{$course->id}}">
+            <input class="toggle" id="toggle-event-{{$course->id}}" type="checkbox" @if($course->active)
             checked
             @endif
             data-toggle="toggle">
@@ -62,9 +62,11 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <script>
     $(function() {
-        $('#toggle-event').change(function(e) {
-            var status = ($(this).prop('checked')) ? 1 : 0;
-            console.log(status);
+
+        @foreach($courses as $course)
+        $('#toggle-event-{{$course->id}}').change(function(e) {
+            var active = ($(this).prop('checked')) ? 1 : 0;
+            var id = $("#course_{{$course->id}}").val();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -72,7 +74,8 @@
             });
             e.preventDefault();
             var formData = {
-                active: status,
+                active,
+                id,
             };
             var type = "POST";
             var ajaxurl = "{{ route('courseStatus', ['id' => $course->id]) }}";
@@ -83,12 +86,16 @@
             data: formData,
             dataType: 'json',
             success: function (data) {
+                
             },
             error: function (data) {
                 console.log(data);
             }
             });
         })
+        @endforeach
+
+
     });
 </script>
 @endsection
